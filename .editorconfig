@@ -1,0 +1,25 @@
+root = true
+
+[*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+end_of_line = lf
+insert_final_newLine = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{yml,yaml,json,xml,babelrc}]
+indent_size = 2
+indent_style = space
+
+[*.{vue,js,jsx,ts,tsx,html,scss,sass,css}]
+indent_size = 2
+indent_style = space
+
+[*.min.*]
+indent_style = ignore
+trim_trailing_whitespace = false
+insert_final_newline = ignore

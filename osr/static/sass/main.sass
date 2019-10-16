@@ -1,0 +1,30 @@
+@import "vars"
+@import "fonts"
+@import "libs"
+
+::placeholder
+  color: rgba(128, 128, 128, 0.29)
+
+::selection
+  color: #fff
+html
+  font-size: 16px
+body
+  background-color: gray
+  font-size: 16px
+  min-width: 320px
+  position: relative
+  line-height: 1.65
+  overflow-x: hidden
+  min-height: 100vh
+  input, textarea
+    border: #666 1px solid
+    outline: none
+    &:focus:required:invalid
+      border-color: red
+    &:required:valid
+      border-color: green
+
+
+
+@import "media" // Always at the end
