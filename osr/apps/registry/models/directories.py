@@ -1,6 +1,6 @@
 from django.db import models
 from .objects import *
-
+from django.urls import reverse
 
 class Physique(models.Model):
     height = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Рост")
@@ -21,7 +21,8 @@ class Sport_type(models.Model):
 
     def __str__(self):
         return self.name
-
+    def get_absolute_url(self,*args,**kwargs):
+        return reverse('sport-type-detail',kwargs={'pk': self.pk})
     class Meta:
         ordering = ("name",)
         verbose_name = "Вид спорта"
