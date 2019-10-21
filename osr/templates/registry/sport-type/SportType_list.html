@@ -6,7 +6,7 @@
     <div class="row justify-content-around">
       {% for i in object_list %}
       <div class="col-md-7">
-        <a href="{{ i.pk }}">{{ i.name }}</a>
+        <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
       </div>
       {% endfor %}
     </div>
@@ -27,9 +27,6 @@
             {% endif %}
           </span>
         </div>
-      {% else %}
-        <h3>My Cars</h3>
-        <p>No cars found!!! :(</p>
       {% endif %}
     </div>
   </div>

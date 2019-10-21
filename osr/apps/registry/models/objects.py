@@ -98,7 +98,7 @@ class Sportsman(models.Model):
     telephone = models.CharField(max_length=12, verbose_name="Контактный номер")
     swimming_skills = models.BooleanField(blank=True, verbose_name="Умение плавать")
     school_progress = models.CharField(max_length=4, choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе")
-    sport_desire = models.BooleanField(blank=True, verbose_name="Жедание заниматься спортом")
+    sport_desire = models.BooleanField(blank=True, verbose_name="Желание заниматься спортом")
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель")
     sport_type = models.ForeignKey(Sport_type, on_delete=models.CASCADE, verbose_name="Вид спорта")
