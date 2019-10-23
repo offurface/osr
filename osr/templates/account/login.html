@@ -1,12 +1,44 @@
 {% extends 'base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Авторизация{% endblock %}
 
 {% block content %}
-  <h2>Автроизация</h2>
-  <form method="POST">
+
+<div class="center-wrap">
+
+  {% if user.is_authenticated %}
+  <div class="text-align-center">
+    <h1>
+      {{ user.last_name }} {{ user.first_name }} <br>
+      успешно авторизированы.<br>
+      <a href="{% url 'registry' %}">Перейти к реестру</a><br>
+      <a href="{% url 'logout' %}">Завершить сессию</a>
+    </h1>
+  </div>
+  {% else %}
+  <form class="form-model" action="" method="POST">
+
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Войти</button>
+    {% load widget_tweaks %}
+
+    <div class="form-model__field-wrap">
+      {{ form.username|add_label_class:"form-model__label" }}
+      {{ form.username|add_class:"form-model__field" }}
+    </div>
+
+    <div class="form-model__field-wrap">
+      {{ form.password|add_label_class:"form-model__label" }}
+      {{ form.password|add_class:"form-model__field" }}
+    </div>
+
+    <div class="form-model__btn-box">
+      <input class="btn btn-succes" type="submit" value="Войти">
+    </div>
   </form>
+  {% endif %}
+</div>
+
+
+
+
 {% endblock %}

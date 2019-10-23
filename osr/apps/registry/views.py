@@ -70,6 +70,8 @@ class SportTypeDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse("sport-type-list")
+
+
 """
 ТРЕНЕРА
 """
@@ -115,3 +117,97 @@ class CoachDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse("coach-list")
+
+
+"""
+Представители
+"""
+class ParentListView(ListView):
+    template_name = "registry/parent/parent_list.html"
+    queryset = Parent.objects.all()
+    paginate_by = 7
+
+class ParentCreateView(CreateView):
+    template_name = "registry/parent/parent_create.html"
+    form_class = ParentForm
+    queryset = Parent.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+class ParentUpdateView(UpdateView):
+    template_name = "registry/parent/parent_update.html"
+    form_class = ParentForm
+    queryset = Parent.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Parent, pk=pk_)
+
+class ParentDetailView(DetailView):
+    template_name = "registry/parent/parent_detail.html"
+    queryset = Parent.objects.all()
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Parent, pk=pk_)
+
+class ParentDeleteView(DeleteView):
+    template_name = "registry/parent/parent_delete.html"
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Parent, pk=pk_)
+
+    def get_success_url(self):
+        return reverse("parent-list")
+
+
+"""
+Спортсмены
+"""
+class SportsmanListView(ListView):
+    template_name = "registry/sportsman/sportsman_list.html"
+    queryset = Sportsman.objects.all()
+    paginate_by = 7
+
+class SportsmanCreateView(CreateView):
+    template_name = "registry/sportsman/sportsman_create.html"
+    form_class = SportsmanForm
+    queryset = Sportsman.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+class SportsmanUpdateView(UpdateView):
+    template_name = "registry/sportsman/sportsman_update.html"
+    form_class = SportsmanForm
+    queryset = Sportsman.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Sportsman, pk=pk_)
+
+class SportsmanDetailView(DetailView):
+    template_name = "registry/sportsman/sportsman_detail.html"
+    queryset = Sportsman.objects.all()
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Sportsman, pk=pk_)
+
+class SportsmanDeleteView(DeleteView):
+    template_name = "registry/sportsman/sportsman_delete.html"
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Sportsman, pk=pk_)
+
+    def get_success_url(self):
+        return reverse("sportsman-list")

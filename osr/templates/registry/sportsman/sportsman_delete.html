@@ -1,4 +1,4 @@
-{% extends "empty.html" %}
+{% extends "base.html" %}
 
 {% block title %}Удалить?{% endblock title %}
 
@@ -7,10 +7,16 @@
   <div class="container-fluid">
     <div class="row justify-content-around">
       <div class="col-md-7">
-        <form action="" method="POST">
+        <form class="form-model" action="" method="POST">
           {% csrf_token %}
-          <h3>Вы действительно хотите удалить {{ object.name }}?</h3>
-          <input type="submit" value="Да" /> <a href="../">Нет</a>
+          <h3 class="form-model__message">
+            Вы действительно хотите удалить "{{ object.surname }} {{ object.name }} {{ object.patronymic }}"?
+          </h3>
+
+          <div class="form-model__btn-box">
+              <input class="btn btn-danger" type="submit" value="Да" />
+              <a class="btn btn-second" href="../">Нет</a>
+          </div>
         </form>
       </div>
     </div>

@@ -20,4 +20,19 @@ urlpatterns = [
         path('<int:pk>/delete/', views.CoachDeleteView.as_view(), name='coach-delete'),
     ])),
 
+    path('parent/', include([
+        path('', views.ParentListView.as_view(), name='parent-list'),
+        path('<int:pk>/', views.ParentDetailView.as_view(), name='parent-detail'),
+        path('create/', views.ParentCreateView.as_view(), name='parent-create'),
+        path('<int:pk>/update/', views.ParentUpdateView.as_view(), name='parent-update'),
+        path('<int:pk>/delete/', views.ParentDeleteView.as_view(), name='parent-delete'),
+    ])),
+
+    path('sportsman/', include([
+        path('', views.SportsmanListView.as_view(), name='sportsman-list'),
+        path('<int:pk>/', views.SportsmanDetailView.as_view(), name='sportsman-detail'),
+        path('create/', views.SportsmanCreateView.as_view(), name='sportsman-create'),
+        path('<int:pk>/update/', views.SportsmanUpdateView.as_view(), name='sportsman-update'),
+        path('<int:pk>/delete/', views.SportsmanDeleteView.as_view(), name='sportsman-delete'),
+    ])),
 ]

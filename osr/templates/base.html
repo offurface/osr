@@ -11,6 +11,7 @@
 </head>
 <body>
 
+  {% if user.is_authenticated %}
   <nav class="top-menu" canvas="">
     <button class="hamburger hamburger--3dx" type="button">
       <span class="hamburger-box">
@@ -18,21 +19,24 @@
       </span>
     </button>
   </nav>
+  {% endif %}
 
-  <div canvas="container">
+  <div class="page" canvas="container">
     {% block content %}
     {% endblock %}
   </div>
 
+  {% if user.is_authenticated %}
   <div class="left-menu" off-canvas="left-menu left push">
     <ul>
       <li><a href="{% url 'sport-type-list' %}">Виды спорта</a></li>
       <li><a href="{% url 'coach-list' %}">Тренера</a></li>
-      <li><a href=""></a></li>
-      <li><a href=""></a></li>
+      <li><a href="{% url 'parent-list' %}">Представители</a></li>
+      <li><a href="{% url 'sportsman-list' %}">Спортсмены</a></li>
       <li><a href=""></a></li>
     </ul>
   </div>
+  {% endif %}
 
   <script src="{% static 'js/vendor.js' %} "></script>
   <script src="{% static 'js/script.js' %} "></script>

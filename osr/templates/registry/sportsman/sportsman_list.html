@@ -1,34 +1,80 @@
-{% extends "empty.html" %}
+{% extends "base.html" %}
+
+{% block title %}Спортсмены{% endblock title %}
 
 {% block content %}
 <main>
   <div class="container-fluid">
+
     <div class="row justify-content-around">
-      {% for i in object_list %}
-      <div class="col-md-7">
-        <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+      <div class="col-md-10">
+        <table class="table">
+          <thead>
+            <th>
+              <a href="{% url 'sportsman-create' %}" class="icon__create"><i class="fas fa-plus"></i></a>
+            </th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Дата рождения</th>
+            <th>Место жительства</th>
+            <th>Телефон</th>
+            <th>Умение плавать</th>
+            <th>Оценки в школе</th>
+            <th>Желание</th>
+            <th>Тренер</th>
+            <th>Представитель</th>
+            <th>Вид спорта</th>
+          </thead>
+          <tbody>
+            {% for i in object_list %}
+            <tr class="col-md-7">
+              <th>
+                <a href="{{ i.pk }}/delete/" class="table__icon icon__delete"><i class="fas fa-trash-alt"></i></a>
+                <a href="{{ i.pk }}/update/" class="table__icon icon__update"><i class="fas fa-pencil-alt"></i></a>
+                <a href="{{ i.pk }}/" class="table__icon icon__detail"><i class="fas fa-info-circle"></i></a>
+              </th>
+              <td>{{ i.surname }}</td>
+              <td>{{ i.name }}</td>
+              <td>{{ i.patronymic }}</td>
+              <td>{{ i.date_of_birth }}</td>
+              <td>{{ i.gender }}</td>
+              <td>{{ i.location }}</td>
+              <td>{{ i.telephone }}</td>
+              <td>{{ i.swimming_skills }}</td>
+              <td>{{ i.school_progress }}</td>
+              <td>{{ i.sport_desire }}</td>
+              <td>{{ i.coach }}</td>
+              <td>{{ i.parent }}</td>
+              <td>{{ i.sport_type }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
-      {% endfor %}
     </div>
-  </div>
-  <div class="row justify-content-around">
-    <div class="col-md-5">
+
+    <div class="row">
+      <div class="col-md-3">
         {% if is_paginated %}
-        <div class="pagination">
-          <span class="page-links">
-            {% if page_obj.has_previous %}
-              <a href="{% url 'book-list' %}?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-            <span class="book-current">
-              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          <div class="pagination">
+            <span class="page-links">
+              {% if page_obj.has_previous %}
+                <a href="{% url 'book-list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+              {% endif %}
+              <span class="book-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+              {% if page_obj.has_next %}
+                <a href="{% url 'book-list' %}?page={{ page_obj.next_page_number }}">next</a>
+              {% endif %}
             </span>
-            {% if page_obj.has_next %}
-              <a href="{% url 'book-list' %}?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}
-          </span>
-        </div>
-      {% endif %}
+          </div>
+        {% endif %}
+      </div>
     </div>
+
   </div>
 </main>
 {% endblock content %}
+

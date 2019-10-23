@@ -63,7 +63,8 @@ class Coach(models.Model):
     sport_type = models.ForeignKey(Sport_type, on_delete=models.CASCADE, verbose_name="Вид спорта")
 
     def __str__(self):
-        return "%s %s" % (self.id, self.surname)
+        return "%s %s %s" % (self.surname, self.name, self.patronymic)
+
     def get_absolute_url(self,*args,**kwargs):
         return reverse('coach-detail', kwargs={'pk': self.pk})
     class Meta:
@@ -82,7 +83,8 @@ class Parent(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.id, self.surname)
-
+    def get_absolute_url(self,*args,**kwargs):
+        return reverse('parent-detail', kwargs={'pk': self.pk})
     class Meta:
         ordering = ("surname",)
         verbose_name = "Представитель"
@@ -106,7 +108,8 @@ class Sportsman(models.Model):
 
     def __str__(self):
         return "%s %s %s" % (self.id, self.surname, self.name)
-
+    def get_absolute_url(self,*args,**kwargs):
+        return reverse('sportsman-detail', kwargs={'pk': self.pk})
     class Meta:
         ordering = ("surname",)
         verbose_name = "Спортсмен"
