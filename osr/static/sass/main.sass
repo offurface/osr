@@ -6,12 +6,12 @@
   color: rgba(128, 128, 128, 0.29)
 
 ::selection
-  color: #fff
+  color: white
+  background-color: blue
 html
-  font-size: 16px
+  font-size: 10px
 body
-  background-color: gray
-  font-size: 16px
+  font-size: 10px
   min-width: 320px
   position: relative
   line-height: 1.65
@@ -24,6 +24,45 @@ body
       border-color: red
     &:required:valid
       border-color: green
+.hamburger
+  outline: none!important
+.btn
+  padding: .9rem 1.5rem
+  border-radius: 3px
+  font-size: 1.5rem!important
+  display: block
+  text-decoration: none
+  border: none
+  font-weight: bold
+  color: white
+  &:hover
+    color: white
+    text-decoration: none
+  &-succes
+    background-color: $succes
+    &:hover
+      background-color: lighten($succes, 10%)
+  &-second
+    background-color: $info
+    &:hover
+      background-color: lighten($info, 10%)
+  &-danger
+    background-color: $danger
+    &:hover
+      background-color: lighten($danger, 10%)
+.icon
+  &__create
+    color: $succes
+  &__delete
+    color: $danger
+  &__update
+    color: $warning
+  &__detail
+    color: $info
+
+@import "components/left-menu.sass"
+@import "components/forms.sass"
+@import "components/tables.sass"
 
 
 

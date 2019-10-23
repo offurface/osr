@@ -16,6 +16,28 @@
             {{ form.name|add_class:"form-model__field" }}
           </div>
 
+          <div class="form-model__field-wrap">
+            {{ form.surname|add_label_class:"form-model__label" }}
+            {{ form.surname|add_class:"form-model__field" }}
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.patronymic|add_label_class:"form-model__label" }}
+            {{ form.patronymic|add_class:"form-model__field" }}
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.telephone|add_label_class:"form-model__label" }}
+            {{ form.telephone|add_class:"form-model__field" }}
+
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.sport_type|add_label_class:"form-model__label" }}
+            {{ form.sport_type|add_class:"form-model__field" }}
+
+          </div>
+
           <div class="form-model__btn-box">
             <input class="btn btn-succes" type="submit" value="Сохранить">
             <a class="btn btn-second" href="../">Назад</a>
@@ -27,4 +49,3 @@
   </div>
 </main>
 {% endblock content %}
-

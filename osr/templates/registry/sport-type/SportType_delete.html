@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Удалить?{% endblock title %}
+
+{% block content %}
+<main>
+  <div class="container-fluid">
+    <div class="row justify-content-around">
+      <div class="col-md-7">
+        <form class="form-model" action="" method="POST">
+          {% csrf_token %}
+          <h3 class="form-model__message">
+            Вы действительно хотите удалить "{{ object.name }}"?
+          </h3>
+
+          <div class="form-model__btn-box">
+              <input class="btn btn-danger" type="submit" value="Да" />
+              <a class="btn btn-second" href="../">Нет</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}

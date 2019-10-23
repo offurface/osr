@@ -21,6 +21,7 @@ DEFAULT_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'widget_tweaks',
 
     'apps.account.apps.AccountConfig',
     'apps.registry.apps.RegistryConfig',

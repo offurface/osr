@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "empty.html" %}
 
-{% block title %}Обновить{% endblock title %}
+{% block title %}Добавить{% endblock title %}
 
 {% block content %}
 <main>
@@ -10,7 +10,7 @@
         <form action="" method="POST">
           {% csrf_token %}
           {{ form.as_p }}
-          <input type="submit" value="Обновить">
+          <input type="submit" value="save">
         </form>
       </div>
     </div>

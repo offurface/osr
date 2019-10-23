@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}{{ object.title }}{% endblock title %}
+{% block title %}Добавить{% endblock title %}
 
 {% block content %}
 <main>
   <div class="container-fluid">
     <div class="row justify-content-around">
       <div class="col-md-7">
-        <h1>{{ object.name }}</h1>
+        <form action="" method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="save">
+        </form>
       </div>
     </div>
   </div>

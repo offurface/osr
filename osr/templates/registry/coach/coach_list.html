@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Виды спорта{% endblock title %}
+{% block title %}Тренера{% endblock title %}
 
 {% block content %}
 <main>
@@ -11,9 +11,13 @@
         <table class="table">
           <thead>
             <th>
-              <a href="{% url 'sport-type-create' %}" class="icon__create"><i class="fas fa-plus"></i></a>
+              <a href="{% url 'coach-create' %}" class="icon__create"><i class="fas fa-plus"></i></a>
             </th>
-            <th>Название</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Телефон</th>
+            <th>Вид спорта</th>
           </thead>
           <tbody>
             {% for i in object_list %}
@@ -23,7 +27,11 @@
                 <a href="{{ i.pk }}/update/" class="table__icon icon__update"><i class="fas fa-pencil-alt"></i></a>
                 <a href="{{ i.pk }}/" class="table__icon icon__detail"><i class="fas fa-info-circle"></i></a>
               </th>
+              <td>{{ i.surname }}</td>
               <td>{{ i.name }}</td>
+              <td>{{ i.patronymic }}</td>
+              <td>{{ i.telephone }}</td>
+              <td>{{ i.sport_type }}</td>
             </tr>
             {% endfor %}
           </tbody>

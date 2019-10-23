@@ -64,7 +64,8 @@ class Coach(models.Model):
 
     def __str__(self):
         return "%s %s" % (self.id, self.surname)
-
+    def get_absolute_url(self,*args,**kwargs):
+        return reverse('coach-detail', kwargs={'pk': self.pk})
     class Meta:
         ordering = ("surname",)
         verbose_name = "Тренер"
@@ -92,7 +93,7 @@ class Sportsman(models.Model):
     name = models.CharField(max_length=150, verbose_name="Имя")
     surname = models.CharField(max_length=150, verbose_name="Фамилия")
     patronymic = models.CharField(max_length=150, verbose_name="Отчество")
-    date_of_birth = models.DateField(auto_now_add=True, verbose_name="Дата рождения")
+    date_of_birth = models.DateField(verbose_name="Дата рождения")
     gender = models.CharField(max_length=10, choices=GENDER, verbose_name="Пол")
     location = models.TextField(verbose_name="Место жительства")
     telephone = models.CharField(max_length=12, verbose_name="Контактный номер")

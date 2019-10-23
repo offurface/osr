@@ -22,7 +22,7 @@ class Sport_type(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self,*args,**kwargs):
-        return reverse('sport-type-detail',kwargs={'pk': self.pk})
+        return reverse('sport-type-detail', kwargs={'pk': self.pk})
     class Meta:
         ordering = ("name",)
         verbose_name = "Вид спорта"

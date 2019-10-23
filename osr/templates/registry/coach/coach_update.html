@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Обновить{% endblock title %}
+
+{% block content %}
+<main>
+  <div class="container-fluid">
+    <div class="row justify-content-around">
+      <div class="col-md-7">
+        <form class="form-model" action="" method="POST">
+          {% csrf_token %}
+          {% load widget_tweaks %}
+
+          <div class="form-model__field-wrap">
+            {{ form.name|add_label_class:"form-model__label" }}
+            {{ form.name|add_class:"form-model__field" }}
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.surname|add_label_class:"form-model__label" }}
+            {{ form.surname|add_class:"form-model__field" }}
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.patronymic|add_label_class:"form-model__label" }}
+            {{ form.patronymic|add_class:"form-model__field" }}
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.telephone|add_label_class:"form-model__label" }}
+            {{ form.telephone|add_class:"form-model__field" }}
+
+          </div>
+
+          <div class="form-model__field-wrap">
+            {{ form.sport_type|add_label_class:"form-model__label" }}
+            {{ form.sport_type|add_class:"form-model__field" }}
+
+          </div>
+
+          <div class="form-model__btn-box">
+            <input class="btn btn-succes" type="submit" value="Обновить">
+            <a class="btn btn-second" href="../">Назад</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock content %}
