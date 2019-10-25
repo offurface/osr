@@ -54,6 +54,12 @@ BACK_SHAPE = (
     ('Кругло-вогнутая', 'Кругло-вогнутая'),
 )
 
+BODY_TYPE = (
+    ('Эктоморф', 'Эктоморф'),
+    ('Эндоморф', 'Эндоморф'),
+    ('Мезоморф', 'Мезоморф'),
+)
+
 
 class Coach(models.Model):
     name = models.CharField(max_length=150, verbose_name="Имя")
@@ -105,6 +111,7 @@ class Sportsman(models.Model):
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель")
     sport_type = models.ForeignKey(Sport_type, on_delete=models.CASCADE, verbose_name="Вид спорта")
+    rank = models.ForeignKey(Rank, on_delete=models.CASCADE, verbose_name='Разряд')
 
     def __str__(self):
         return "%s %s %s" % (self.id, self.surname, self.name)
@@ -122,6 +129,7 @@ class Survey(models.Model):
     weight = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес тела (кг)")
     length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина тела(см)")
     spit_leg_length = models.PositiveIntegerField(verbose_name="Длина ног от вертела(см)")
+    foot_length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина стопы (см)")
     torso_length_7 = models.DecimalField(max_digits=4, decimal_places=1,
                                          verbose_name="Длина туловища от 7-го шейного позвонка(см)")
     arm_span = models.PositiveIntegerField(verbose_name="Размах рук(см)")
@@ -144,9 +152,9 @@ class Survey(models.Model):
     kg = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="PWC Кг мм")
     chss = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="PWC ЧСС")
     arterial_pressure_f = models.DecimalField(max_digits=4, decimal_places=1,
-                                              verbose_name="Артериальное давление(первое число)")  # Вверхнее число
+                                              verbose_name="Артериальное давление(верхнее число)")  # Вверхнее число
     arterial_pressure_s = models.DecimalField(max_digits=4, decimal_places=1,
-                                              verbose_name="Артериальное давление(второе число)")  # Нижнее число
+                                              verbose_name="Артериальное давление(нижнее число)")  # Нижнее число
     mpc = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="МПК мл/мин/кг")
 
     def __str__(self):
@@ -158,20 +166,22 @@ class Survey(models.Model):
         verbose_name_plural = "Обследование"
 
 
-class PDK(Survey):
+class Primary(Survey):
     date_of_test = models.DateField(auto_now_add=True, verbose_name="Дата прохождения тестирования")
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель")
     sportsman_pdk = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Участник тестир.")
     place_of_birth = models.TextField(verbose_name="Место рождения")
     place_of_study = models.CharField(max_length=300, verbose_name="Место обучения")
-    previous_sport = models.ForeignKey(Previous_sport, on_delete=models.CASCADE, verbose_name="Предыдущ. вид спорта")
+    school_progress = models.CharField(max_length=4, choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе")
     sports_facility = models.CharField(max_length=250, verbose_name="Спортивное учреждение")
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")
     past_diseases = models.CharField(max_length=250, verbose_name="Перенесенные заболевания(травмы)")
-    physique_of_father = models.ForeignKey(Physique, related_name='body_father', on_delete=models.CASCADE,
-                                           verbose_name="Тип телосложения отца")
-    physique_of_mother = models.ForeignKey(Physique, related_name='body_mother', on_delete=models.CASCADE,
-                                           verbose_name="Тип телосложения матери")
+    height_father = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Рост отца")
+    weight_father = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес отца")
+    body_type_father = models.CharField(max_length=10, choices=BODY_TYPE, verbose_name="Тип тела отца")
+    height_mather = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Рост матери")
+    weight_mather = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес матери")
+    body_type_mather = models.CharField(max_length=10, choices=BODY_TYPE, verbose_name="Тип тела матери")
     chest_shape = models.CharField(max_length=15, choices=CHEST_SHAPE, verbose_name="Форма грудной клетки")
     back_shape = models.CharField(max_length=20, choices=BACK_SHAPE, verbose_name="Форма спины")
     speed = models.PositiveIntegerField(verbose_name="Скорость%")
@@ -206,6 +216,7 @@ class UMO(Survey):
     date_of_pass = models.DateField(auto_now_add=True, verbose_name="Дата прохождения УМО")
     rest = models.PositiveIntegerField(verbose_name="ЭКГ в покое")
     load = models.PositiveIntegerField(verbose_name="ЭКГ с нагрузкой")
+    ultrasound_heart = models.PositiveIntegerField(verbose_name="Узи сердца")
     plantometry = models.PositiveIntegerField(verbose_name="Плантометрия")
     cns_functional = models.PositiveIntegerField(verbose_name="Фукц.возможности ЦНС")
     cns_level = models.PositiveIntegerField(verbose_name="Уров.работоспособности ЦНС")
@@ -226,27 +237,27 @@ class UMO(Survey):
         verbose_name_plural = "УМО"
 
 
-class Functional_potential(Survey):
-    date_of_fp = models.DateField(auto_now_add=True, verbose_name="Дата")
-    sportsman_fp = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен")
-    vt = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вт")
-    vt_kg = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Вт/кг")
-    mpk_lmin = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="МПК,л/мин")
-    la_max = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="La макс, ммоль/л")
-    potential = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="180+120/2 град/с н (потенциал)")
-    realization = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="180+120/2 град/с н./кг(реализация)")
-    speed_power_balance = models.DecimalField(max_digits=4, decimal_places=2,
-                                              verbose_name="Баланс Скорость-сила 360/30 %")
-    romberg_coefficient = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Коэффициент Ромберга")
-    average = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Средние(все)")
-    omega = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Сигма")
-
-    def __str__(self):
-        return "%s %s" % (self.id, self.date)
-
-    class Meta:
-        ordering = ("date",)
-        verbose_name = "Функциональный потенциал"
-        verbose_name_plural = "Функц. потенциал"
+# class Functional_potential(Survey):
+#     date_of_fp = models.DateField(auto_now_add=True, verbose_name="Дата")
+#     sportsman_fp = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен")
+#     vt = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вт")
+#     vt_kg = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Вт/кг")
+#     mpk_lmin = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="МПК,л/мин")
+#     la_max = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="La макс, ммоль/л")
+#     potential = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="180+120/2 град/с н (потенциал)")
+#     realization = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="180+120/2 град/с н./кг(реализация)")
+#     speed_power_balance = models.DecimalField(max_digits=4, decimal_places=2,
+#                                               verbose_name="Баланс Скорость-сила 360/30 %")
+#     romberg_coefficient = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Коэффициент Ромберга")
+#     average = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Средние(все)")
+#     omega = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Сигма")
+#
+#     def __str__(self):
+#         return "%s %s" % (self.id, self.date)
+#
+#     class Meta:
+#         ordering = ("date",)
+#         verbose_name = "Функциональный потенциал"
+#         verbose_name_plural = "Функц. потенциал"
 
 
