@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .models import (
     Sport_type,
@@ -21,18 +23,19 @@ from django.views.generic import (
     DeleteView,
     TemplateView,
 )
-
+@method_decorator(login_required, name='dispatch')
 class RegitryTemplateView(TemplateView):
     template_name = "registry/registry.html"
 
 """
 Вид спорта
 """
+@method_decorator(login_required, name='dispatch')
 class SportTypeListView(ListView):
     template_name = "registry/sport-type/SportType_list.html"
     queryset = Sport_type.objects.all()
     paginate_by = 7
-
+@method_decorator(login_required, name='dispatch')
 class SportTypeCreateView(CreateView):
     template_name = "registry/sport-type/SportType_create.html"
     form_class = SportTypeForm
@@ -40,7 +43,7 @@ class SportTypeCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
-
+@method_decorator(login_required, name='dispatch')
 class SportTypeUpdateView(UpdateView):
     template_name = "registry/sport-type/SportType_create.html"
     form_class = SportTypeForm
@@ -52,7 +55,7 @@ class SportTypeUpdateView(UpdateView):
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Sport_type, pk=pk_)
-
+@method_decorator(login_required, name='dispatch')
 class SportTypeDetailView(DetailView):
     template_name = "registry/sport-type/SportType_detail.html"
     queryset = Sport_type.objects.all()
@@ -60,7 +63,7 @@ class SportTypeDetailView(DetailView):
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Sport_type, pk=pk_)
-
+@method_decorator(login_required, name='dispatch')
 class SportTypeDeleteView(DeleteView):
     template_name = "registry/sport-type/SportType_delete.html"
 
@@ -75,11 +78,12 @@ class SportTypeDeleteView(DeleteView):
 """
 ТРЕНЕРА
 """
+@method_decorator(login_required, name='dispatch')
 class CoachListView(ListView):
     template_name = "registry/coach/coach_list.html"
     queryset = Coach.objects.all()
     paginate_by = 7
-
+@method_decorator(login_required, name='dispatch')
 class CoachCreateView(CreateView):
     template_name = "registry/coach/coach_create.html"
     form_class = CoachForm
@@ -87,7 +91,7 @@ class CoachCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
-
+@method_decorator(login_required, name='dispatch')
 class CoachUpdateView(UpdateView):
     template_name = "registry/coach/coach_update.html"
     form_class = CoachForm
@@ -99,7 +103,7 @@ class CoachUpdateView(UpdateView):
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Coach, pk=pk_)
-
+@method_decorator(login_required, name='dispatch')
 class CoachDetailView(DetailView):
     template_name = "registry/coach/coach_detail.html"
     queryset = Coach.objects.all()
@@ -107,7 +111,7 @@ class CoachDetailView(DetailView):
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Coach, pk=pk_)
-
+@method_decorator(login_required, name='dispatch')
 class CoachDeleteView(DeleteView):
     template_name = "registry/coach/coach_delete.html"
 
@@ -122,11 +126,12 @@ class CoachDeleteView(DeleteView):
 """
 Представители
 """
+@method_decorator(login_required, name='dispatch')
 class ParentListView(ListView):
     template_name = "registry/parent/parent_list.html"
     queryset = Parent.objects.all()
     paginate_by = 7
-
+@method_decorator(login_required, name='dispatch')
 class ParentCreateView(CreateView):
     template_name = "registry/parent/parent_create.html"
     form_class = ParentForm
@@ -134,7 +139,7 @@ class ParentCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
-
+@method_decorator(login_required, name='dispatch')
 class ParentUpdateView(UpdateView):
     template_name = "registry/parent/parent_update.html"
     form_class = ParentForm
@@ -146,7 +151,7 @@ class ParentUpdateView(UpdateView):
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Parent, pk=pk_)
-
+@method_decorator(login_required, name='dispatch')
 class ParentDetailView(DetailView):
     template_name = "registry/parent/parent_detail.html"
     queryset = Parent.objects.all()
@@ -154,7 +159,7 @@ class ParentDetailView(DetailView):
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Parent, pk=pk_)
-
+@method_decorator(login_required, name='dispatch')
 class ParentDeleteView(DeleteView):
     template_name = "registry/parent/parent_delete.html"
 
@@ -169,11 +174,13 @@ class ParentDeleteView(DeleteView):
 """
 Спортсмены
 """
+@method_decorator(login_required, name='dispatch')
 class SportsmanListView(ListView):
     template_name = "registry/sportsman/sportsman_list.html"
     queryset = Sportsman.objects.all()
     paginate_by = 7
 
+@method_decorator(login_required, name='dispatch')
 class SportsmanCreateView(CreateView):
     template_name = "registry/sportsman/sportsman_create.html"
     form_class = SportsmanForm
@@ -182,6 +189,7 @@ class SportsmanCreateView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+@method_decorator(login_required, name='dispatch')
 class SportsmanUpdateView(UpdateView):
     template_name = "registry/sportsman/sportsman_update.html"
     form_class = SportsmanForm
@@ -194,6 +202,7 @@ class SportsmanUpdateView(UpdateView):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Sportsman, pk=pk_)
 
+@method_decorator(login_required, name='dispatch')
 class SportsmanDetailView(DetailView):
     template_name = "registry/sportsman/sportsman_detail.html"
     queryset = Sportsman.objects.all()
@@ -202,6 +211,7 @@ class SportsmanDetailView(DetailView):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Sportsman, pk=pk_)
 
+@method_decorator(login_required, name='dispatch')
 class SportsmanDeleteView(DeleteView):
     template_name = "registry/sportsman/sportsman_delete.html"
 
