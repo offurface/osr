@@ -1,3 +1,14 @@
+"""
+1. Спортивный результат
+
+2. Спортивный отбор - CHOISES
+    Предварительный
+    1-ий
+    2-ий
+    3-ий
+
+"""
+
 from django.db import models
 from .directories import *
 
@@ -168,13 +179,13 @@ class Survey(models.Model):
 
 class Primary(Survey):
     date_of_test = models.DateField(auto_now_add=True, verbose_name="Дата прохождения тестирования")
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель")
-    sportsman_pdk = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Участник тестир.")
-    place_of_birth = models.TextField(verbose_name="Место рождения")
-    place_of_study = models.CharField(max_length=300, verbose_name="Место обучения")
-    school_progress = models.CharField(max_length=4, choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе")
-    sports_facility = models.CharField(max_length=250, verbose_name="Спортивное учреждение")
-    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")
+    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель") # удалить
+    sportsman_pdk = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Участник тестир.")# удалить
+    place_of_birth = models.TextField(verbose_name="Место рождения")# удалить
+    place_of_study = models.CharField(max_length=300, verbose_name="Место обучения")# удалить
+    school_progress = models.CharField(max_length=4, choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе")# удалить
+    sports_facility = models.CharField(max_length=250, verbose_name="Спортивное учреждение")# к спортсмену
+    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")# удалить
     past_diseases = models.CharField(max_length=250, verbose_name="Перенесенные заболевания(травмы)")
     height_father = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Рост отца")
     weight_father = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес отца")
@@ -184,7 +195,7 @@ class Primary(Survey):
     body_type_mather = models.CharField(max_length=10, choices=BODY_TYPE, verbose_name="Тип тела матери")
     chest_shape = models.CharField(max_length=15, choices=CHEST_SHAPE, verbose_name="Форма грудной клетки")
     back_shape = models.CharField(max_length=20, choices=BACK_SHAPE, verbose_name="Форма спины")
-    speed = models.PositiveIntegerField(verbose_name="Скорость%")
+    speed = models.PositiveIntegerField(verbose_name="Быстрота")
     strength = models.PositiveIntegerField(verbose_name="Сила%")
     stamina = models.PositiveIntegerField(verbose_name="Выносливость%")
     coordination = models.PositiveIntegerField(verbose_name="Координация%")
@@ -196,9 +207,9 @@ class Primary(Survey):
     concept = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Концепт(техническая гребля)")
     run_1500 = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Бег 1500м")
     concept_500 = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Концепт 500м")
-    motivation = models.CharField(max_length=15, choices=MOTIVATION, verbose_name="Мотивация к тренеровочному процессу")
+    motivation = models.CharField(max_length=15, choices=MOTIVATION, verbose_name="Мотивация к тренеровочному процессу") # псих тест
     willed_qualities = models.CharField(max_length=15, choices=WILLED_QUALITIES,
-                                        verbose_name="Развитие волевых качеств")
+                                        verbose_name="Развитие волевых качеств")# псих тест
     recommendations = models.ManyToManyField(Sport_type, verbose_name="Рекомендации")
 
     def __str__(self):
@@ -211,8 +222,8 @@ class Primary(Survey):
 
 
 class UMO(Survey):
-    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")
-    sportsman_umo = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен")
+    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")# удалить
+    sportsman_umo = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен")# удалить
     date_of_pass = models.DateField(auto_now_add=True, verbose_name="Дата прохождения УМО")
     rest = models.PositiveIntegerField(verbose_name="ЭКГ в покое")
     load = models.PositiveIntegerField(verbose_name="ЭКГ с нагрузкой")
