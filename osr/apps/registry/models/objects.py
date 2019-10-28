@@ -116,6 +116,7 @@ class Sportsman(models.Model):
     gender = models.CharField(max_length=10, choices=GENDER, verbose_name="Пол")
     location = models.TextField(verbose_name="Место жительства")
     telephone = models.CharField(max_length=12, verbose_name="Контактный номер")
+    sports_facility = models.CharField(max_length=250, verbose_name="Спортивное учреждение")
     swimming_skills = models.BooleanField(blank=True, verbose_name="Умение плавать")
     school_progress = models.CharField(max_length=4, choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе")
     sport_desire = models.BooleanField(blank=True, verbose_name="Желание заниматься спортом")
@@ -179,13 +180,8 @@ class Survey(models.Model):
 
 class Primary(Survey):
     date_of_test = models.DateField(auto_now_add=True, verbose_name="Дата прохождения тестирования")
-    parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель") # удалить
-    sportsman_pdk = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Участник тестир.")# удалить
-    place_of_birth = models.TextField(verbose_name="Место рождения")# удалить
-    place_of_study = models.CharField(max_length=300, verbose_name="Место обучения")# удалить
-    school_progress = models.CharField(max_length=4, choices=SCHOOL_PROGRESS, verbose_name="Успеваемость в школе")# удалить
-    sports_facility = models.CharField(max_length=250, verbose_name="Спортивное учреждение")# к спортсмену
-    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")# удалить
+    # place_of_birth = models.TextField(verbose_name="Место рождения")# удалить
+    # place_of_study = models.CharField(max_length=300, verbose_name="Место обучения")# удалить
     past_diseases = models.CharField(max_length=250, verbose_name="Перенесенные заболевания(травмы)")
     height_father = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Рост отца")
     weight_father = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес отца")
@@ -213,7 +209,7 @@ class Primary(Survey):
     recommendations = models.ManyToManyField(Sport_type, verbose_name="Рекомендации")
 
     def __str__(self):
-        return "%s %s" % (self.date_of_test, self.sportsman.surname)
+        return "%s" % self.date_of_test
 
     class Meta:
         ordering = ("date_of_test",)
@@ -222,8 +218,6 @@ class Primary(Survey):
 
 
 class UMO(Survey):
-    coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")# удалить
-    sportsman_umo = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен")# удалить
     date_of_pass = models.DateField(auto_now_add=True, verbose_name="Дата прохождения УМО")
     rest = models.PositiveIntegerField(verbose_name="ЭКГ в покое")
     load = models.PositiveIntegerField(verbose_name="ЭКГ с нагрузкой")
@@ -240,7 +234,7 @@ class UMO(Survey):
     functional_reserves = models.PositiveIntegerField(verbose_name="Функциональные резервы")
 
     def __str__(self):
-        return "%s %s" % (self.date_of_pass, self.sportsman.surname)
+        return "%s" % self.date_of_pass
 
     class Meta:
         ordering = ("date_of_pass",)
