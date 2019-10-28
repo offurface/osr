@@ -111,7 +111,7 @@ class Sportsman(models.Model):
     coach = models.ForeignKey(Coach, on_delete=models.CASCADE, verbose_name="Тренер")
     parent = models.ForeignKey(Parent, on_delete=models.CASCADE, verbose_name="Представитель")
     sport_type = models.ForeignKey(Sport_type, on_delete=models.CASCADE, verbose_name="Вид спорта")
-    rank = models.ForeignKey(Rank, on_delete=models.CASCADE, verbose_name='Разряд')
+    rank = models.ForeignKey(Rank, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Разряд')
 
     def __str__(self):
         return "%s %s %s" % (self.id, self.surname, self.name)
@@ -129,7 +129,7 @@ class Survey(models.Model):
     weight = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес тела (кг)")
     length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина тела(см)")
     spit_leg_length = models.PositiveIntegerField(verbose_name="Длина ног от вертела(см)")
-    foot_length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина стопы (см)")
+    foot_length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина стопы (см)",  blank=True, null=True)
     torso_length_7 = models.DecimalField(max_digits=4, decimal_places=1,
                                          verbose_name="Длина туловища от 7-го шейного позвонка(см)")
     arm_span = models.PositiveIntegerField(verbose_name="Размах рук(см)")
@@ -206,8 +206,8 @@ class Primary(Survey):
 
     class Meta:
         ordering = ("date_of_test",)
-        verbose_name = "ПДК"
-        verbose_name_plural = "ПДК"
+        verbose_name = "Первичное"
+        verbose_name_plural = "Первичные"
 
 
 class UMO(Survey):
@@ -216,7 +216,7 @@ class UMO(Survey):
     date_of_pass = models.DateField(auto_now_add=True, verbose_name="Дата прохождения УМО")
     rest = models.PositiveIntegerField(verbose_name="ЭКГ в покое")
     load = models.PositiveIntegerField(verbose_name="ЭКГ с нагрузкой")
-    ultrasound_heart = models.PositiveIntegerField(verbose_name="Узи сердца")
+    ultrasound_heart = models.PositiveIntegerField(verbose_name="Узи сердца",blank=True, null=True)
     plantometry = models.PositiveIntegerField(verbose_name="Плантометрия")
     cns_functional = models.PositiveIntegerField(verbose_name="Фукц.возможности ЦНС")
     cns_level = models.PositiveIntegerField(verbose_name="Уров.работоспособности ЦНС")
