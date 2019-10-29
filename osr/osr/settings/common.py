@@ -22,6 +22,7 @@ DEFAULT_APPS = [
     'django.contrib.sites',
     'django.contrib.flatpages',
     'widget_tweaks',
+    'import_export',
 
     'apps.account.apps.AccountConfig',
     'apps.registry.apps.RegistryConfig',

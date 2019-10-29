@@ -21,10 +21,10 @@ class Rank(models.Model):
     rank = models.PositiveIntegerField(verbose_name="Разряд")
 
     def __str__(self):
-        return self.name
+        return "%s %s" % (self.name, self.rank)
 
     class Meta:
-        ordering = ("name",)
+        ordering = ("name", "rank",)
         verbose_name = "Разряд"
         verbose_name_plural = "Разряд"
 
