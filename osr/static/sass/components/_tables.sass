@@ -1,17 +1,25 @@
 .table
-  background-color: #fefefe
-  font-size: 1.6rem
+  font-size: 1.4rem
+  border-collapse: collapse
+  margin: 2.5rem 0
+  border-radius: 5px 5px 0 0
+  overflow: hidden
   thead
     font-size: 1.8rem
-    th
-      text-align: center
-      padding: .3rem
+    tr
+      background-color: $table-head
+      color: white
+      font-weight: bold
+      text-align: left
+      font-size: 1.4rem
+  th, td
+    padding: 1.2rem 1.5rem
   tbody
     tr
-      th, td
-        padding: .6rem 1rem
-      &:nth-child(even)
-        background-color: #dedede
-  &__icon
-    padding: .2rem
+      border-bottom: 1px solid #dddddd
+      &:nth-of-type(even)
+        background-color: #f3f3f3
+      &:last-of-type
+        border-bottom: 2px solid $table-head
+
 
