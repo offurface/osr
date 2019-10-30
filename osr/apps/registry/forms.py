@@ -34,4 +34,20 @@ class ParentForm(forms.ModelForm):
 class SportsmanForm(forms.ModelForm):
     class Meta:
         model = models.Sportsman
-        fields = ['__all__']
+        fields = [
+            'name',
+            'surname',
+            'patronymic',
+            'date_of_birth',
+            'gender',
+            'location',
+            'telephone',
+            'sports_facility',
+            'swimming_skills',
+            'school_progress',
+            'sport_desire',
+            'coach',
+            'parent',
+            'sport_type',
+            'rank',
+        ]
