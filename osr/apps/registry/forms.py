@@ -4,34 +4,29 @@ from . import models
 class SportTypeForm(forms.ModelForm):
     class Meta:
         model = models.Sport_type
-        fields = [
-            'name',
-        ]
+        fields = ('__all__')
 
 class CoachForm(forms.ModelForm):
     class Meta:
         model = models.Coach
-        fields = [
-            'name',
-            'surname',
-            'patronymic',
-            'telephone',
-            'sport_type',
-        ]
+        fields = ('__all__')
 
 class ParentForm(forms.ModelForm):
     class Meta:
         model = models.Parent
-        fields = [
-            'name',
-            'surname',
-            'patronymic',
-            'status',
-            'telephone',
-            'email',
-        ]
+        fields = ('__all__')
 
 class SportsmanForm(forms.ModelForm):
     class Meta:
         model = models.Sportsman
-        fields = ['__all__']
+        fields = ('__all__')
+
+class UMOForm(forms.ModelForm):
+    class Meta:
+        model = models.UMO
+        fields = ('__all__')
+
+class PrimaryForm(forms.ModelForm):
+    class Meta:
+        model = models.Primary
+        fields = ('__all__')

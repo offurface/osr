@@ -221,3 +221,55 @@ class SportsmanDeleteView(DeleteView):
 
     def get_success_url(self):
         return reverse("sportsman-list")
+
+
+"""
+Первичное обследование
+"""
+# @method_decorator(login_required, name='dispatch')
+# class SportsmanListView(ListView):
+#     template_name = "registry/sportsman/sportsman_list.html"
+#     queryset = Sportsman.objects.all()
+#     paginate_by = 7
+
+@method_decorator(login_required, name='dispatch')
+class SportsmanCreateView(CreateView):
+    template_name = "registry/sportsman/sportsman_create.html"
+    form_class = PrimaryForm
+    queryset = Sportsman.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+@method_decorator(login_required, name='dispatch')
+class SportsmanUpdateView(UpdateView):
+    template_name = "registry/sportsman/sportsman_update.html"
+    form_class = PrimaryForm
+    queryset = Sportsman.objects.all()
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Sportsman, pk=pk_)
+
+@method_decorator(login_required, name='dispatch')
+class SportsmanDetailView(DetailView):
+    template_name = "registry/sportsman/sportsman_detail.html"
+    queryset = Sportsman.objects.all()
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Sportsman, pk=pk_)
+
+@method_decorator(login_required, name='dispatch')
+class SportsmanDeleteView(DeleteView):
+    template_name = "registry/sportsman/sportsman_delete.html"
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Sportsman, pk=pk_)
+
+    def get_success_url(self):
+        return reverse("sportsman-list")
