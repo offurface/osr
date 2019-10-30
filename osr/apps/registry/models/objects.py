@@ -146,7 +146,7 @@ class Sportsman(models.Model):
 
 class Survey(models.Model):
     date = models.DateField(auto_now_add=False, verbose_name="Дата обследования", blank=True, null=True)
-    sportsman = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен")
+    sportsman = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен", blank=True, null=True)
     weight = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес тела (кг)", blank=True, null=True)
     length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина тела(см)", blank=True, null=True)
     spit_leg_length = models.PositiveIntegerField(verbose_name="Длина ног от вертела(см)", blank=True, null=True)
@@ -240,7 +240,7 @@ class Primary(Survey):
     recommendations = models.ManyToManyField(Sport_type, verbose_name="Рекомендации", blank=True)
 
     def __str__(self):
-        return "%s" % self.date_of_test
+        return "%s %s" % (self.date_of_test, self.sportsman)
 
     class Meta:
         ordering = ("date_of_test",)

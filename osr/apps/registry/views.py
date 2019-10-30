@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -8,12 +9,15 @@ from .models import (
     Coach,
     Parent,
     Sportsman,
+    Primary,
 )
 from .forms import (
     SportTypeForm,
     CoachForm,
     ParentForm,
     SportsmanForm,
+    PrimaryForm,
+    UMOForm,
 )
 from django.views.generic import (
     ListView,
@@ -233,43 +237,49 @@ class SportsmanDeleteView(DeleteView):
 #     paginate_by = 7
 
 @method_decorator(login_required, name='dispatch')
-class SportsmanCreateView(CreateView):
-    template_name = "registry/sportsman/sportsman_create.html"
+class PrimaryCreateView(CreateView):
+    template_name = "registry/primary/primary_create.html"
     form_class = PrimaryForm
-    queryset = Sportsman.objects.all()
+    queryset = Primary.objects.all()
+    success_url = 'registry/'
 
     def form_valid(self, form):
+        print(form)
+        obj = form.save(commit=False)
+        obj.sportsman_id = self.kwargs['pk']
+        obj.save()
+        print(obj)
         return super().form_valid(form)
 
-@method_decorator(login_required, name='dispatch')
-class SportsmanUpdateView(UpdateView):
-    template_name = "registry/sportsman/sportsman_update.html"
-    form_class = PrimaryForm
-    queryset = Sportsman.objects.all()
+# @method_decorator(login_required, name='dispatch')
+# class SportsmanUpdateView(UpdateView):
+#     template_name = "registry/sportsman/sportsman_update.html"
+#     form_class = PrimaryForm
+#     queryset = Sportsman.objects.all()
 
-    def form_valid(self, form):
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         return super().form_valid(form)
 
-    def get_object(self):
-        pk_ = self.kwargs.get("pk")
-        return get_object_or_404(Sportsman, pk=pk_)
+#     def get_object(self):
+#         pk_ = self.kwargs.get("pk")
+#         return get_object_or_404(Sportsman, pk=pk_)
 
-@method_decorator(login_required, name='dispatch')
-class SportsmanDetailView(DetailView):
-    template_name = "registry/sportsman/sportsman_detail.html"
-    queryset = Sportsman.objects.all()
+# @method_decorator(login_required, name='dispatch')
+# class SportsmanDetailView(DetailView):
+#     template_name = "registry/sportsman/sportsman_detail.html"
+#     queryset = Sportsman.objects.all()
 
-    def get_object(self):
-        pk_ = self.kwargs.get("pk")
-        return get_object_or_404(Sportsman, pk=pk_)
+#     def get_object(self):
+#         pk_ = self.kwargs.get("pk")
+#         return get_object_or_404(Sportsman, pk=pk_)
 
-@method_decorator(login_required, name='dispatch')
-class SportsmanDeleteView(DeleteView):
-    template_name = "registry/sportsman/sportsman_delete.html"
+# @method_decorator(login_required, name='dispatch')
+# class SportsmanDeleteView(DeleteView):
+#     template_name = "registry/sportsman/sportsman_delete.html"
 
-    def get_object(self):
-        pk_ = self.kwargs.get("pk")
-        return get_object_or_404(Sportsman, pk=pk_)
+#     def get_object(self):
+#         pk_ = self.kwargs.get("pk")
+#         return get_object_or_404(Sportsman, pk=pk_)
 
-    def get_success_url(self):
-        return reverse("sportsman-list")
+#     def get_success_url(self):
+#         return reverse("sportsman-list")
