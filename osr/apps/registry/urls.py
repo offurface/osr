@@ -31,9 +31,10 @@ urlpatterns = [
     path('sportsman/', include([
         path('', views.SportsmanListView.as_view(), name='sportsman-list'),
         path('<int:pk>/', views.SportsmanDetailView.as_view(), name='sportsman-detail'),
-        path('<int:pk>/primary/', views.PrimaryCreateView.as_view(), name='sportsman-detail'),
         path('create/', views.SportsmanCreateView.as_view(), name='sportsman-create'),
         path('<int:pk>/update/', views.SportsmanUpdateView.as_view(), name='sportsman-update'),
         path('<int:pk>/delete/', views.SportsmanDeleteView.as_view(), name='sportsman-delete'),
+        path('<int:pk>/primary/', views.PrimaryCreateView.as_view(), name='sportsman-primary'),
+        #path('<int:pk>/umo/', views.UMOCreateView.as_view(), name='sportsman-umo'),
     ])),
 ]

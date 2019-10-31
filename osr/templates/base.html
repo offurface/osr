@@ -29,6 +29,7 @@
   {% if user.is_authenticated %}
   <div class="left-menu" off-canvas="left-menu left push">
     <ul>
+      <li><a href="{% url 'registry' %}">Главная</a></li>
       <li><a href="{% url 'sport-type-list' %}">Виды спорта</a></li>
       <li><a href="{% url 'coach-list' %}">Тренера</a></li>
       <li><a href="{% url 'parent-list' %}">Представители</a></li>

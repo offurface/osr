@@ -211,6 +211,12 @@ class SportsmanDetailView(DetailView):
     template_name = "registry/sportsman/sportsman_detail.html"
     queryset = Sportsman.objects.all()
 
+    def get_context_data(self, **kwargs):
+        context = super(SportsmanDetailView, self).get_context_data(**kwargs)
+        context['primary'] = Primary.objects.filter(pk=self.object.pk)
+        print(context)
+        return context
+
     def get_object(self):
         pk_ = self.kwargs.get("pk")
         return get_object_or_404(Sportsman, pk=pk_)
@@ -244,11 +250,9 @@ class PrimaryCreateView(CreateView):
     success_url = 'registry/'
 
     def form_valid(self, form):
-        print(form)
         obj = form.save(commit=False)
         obj.sportsman_id = self.kwargs['pk']
         obj.save()
-        print(obj)
         return super().form_valid(form)
 
 # @method_decorator(login_required, name='dispatch')

@@ -24,6 +24,12 @@ body
       border-color: red
     &:required:valid
       border-color: green
+
+main
+  padding-top: 7rem!important
+  padding-bottom: 4rem!important
+
+
 .hamburger
   outline: none!important
 .text-align-center
@@ -57,15 +63,26 @@ body
     background-color: $danger
     &:hover
       background-color: lighten($danger, 10%)
-.icon
+a.icon
   &__create
     color: $succes
+    &-table
+      color: white
+
   &__delete
     color: $danger
+    &:hover
+      color: black
+
   &__update
     color: $warning
+    &:hover
+      color: lighten($warning, 10%)!important
+
   &__detail
     color: $info
+    &:hover
+      color: lighten($info, 10%)!important
 
 @import "components/left-menu.sass"
 @import "components/forms.sass"

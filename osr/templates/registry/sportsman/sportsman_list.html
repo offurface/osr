@@ -7,11 +7,11 @@
   <div class="container-fluid">
 
     <div class="row justify-content-around">
-      <div class="col-md-10">
+      <div class="col-md-11">
         <table class="table">
           <thead>
             <th>
-              <a href="{% url 'sportsman-create' %}" class="icon__create"><i class="fas fa-plus"></i></a>
+              <a href="{% url 'sportsman-create' %}" class="icon__create-table"><i class="fas fa-plus"></i></a>
             </th>
             <th>Фамилия</th>
             <th>Имя</th>
@@ -31,9 +31,11 @@
             {% for i in object_list %}
             <tr class="col-md-7">
               <th>
-                <a href="{{ i.pk }}/delete/" class="table__icon icon__delete"><i class="fas fa-trash-alt"></i></a>
-                <a href="{{ i.pk }}/update/" class="table__icon icon__update"><i class="fas fa-pencil-alt"></i></a>
-                <a href="{{ i.pk }}/" class="table__icon icon__detail"><i class="fas fa-info-circle"></i></a>
+                <div class="table__icon-wrap">
+                  <a href="{{ i.pk }}/delete/" class="icon__delete"><i class="fas fa-trash-alt"></i></a>
+                  <a href="{{ i.pk }}/update/" class="icon__update"><i class="fas fa-pencil-alt"></i></a>
+                  <a href="{{ i.pk }}/" class="icon__detail"><i class="fas fa-info-circle"></i></a>
+                </div>
               </th>
               <td>{{ i.surname }}</td>
               <td>{{ i.name }}</td>
@@ -55,8 +57,8 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-3">
+    <div class="row justify-content-center">
+      <div class="col-md-2">
         {% if is_paginated %}
           <div class="pagination">
             <span class="page-links">
