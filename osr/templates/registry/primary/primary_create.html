@@ -11,20 +11,29 @@
           {% csrf_token %}
           {% load widget_tweaks %}
 
+          <h2>Первичное обследование</h2>
 
-
+        <div class="row">
           {% for field in form.visible_fields %}
+          <div class="col-md-7">
             <div class="form-model__field-wrap">
               {{ field.errors }}
               {{ field|add_label_class:"form-model__label" }}
               {{ field|add_class:"form-model__field" }}
             </div>
-          {% endfor %}
-
-          <div class="form-model__btn-box">
-            <input class="btn btn-succes" type="submit" value="Сохранить">
-            <a class="btn btn-second" href="../">Назад</a>
           </div>
+          {% endfor %}
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <div class="form-model__btn-box">
+              <input class="btn btn-succes" type="submit" value="Сохранить">
+              <a class="btn btn-second" href="../">Назад</a>
+            </div>
+          </div>
+        </div>
+
 
         </form>
       </div>

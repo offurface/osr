@@ -24,9 +24,9 @@ class SportsmanForm(forms.ModelForm):
 class UMOForm(forms.ModelForm):
     class Meta:
         model = models.UMO
-        fields = ('__all__')
+        exclude = ['sportsman']
 
 class PrimaryForm(forms.ModelForm):
     class Meta:
         model = models.Primary
-        fields = ('__all__')
+        exclude = ['sportsman']

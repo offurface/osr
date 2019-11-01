@@ -10,6 +10,7 @@ from .models import (
     Parent,
     Sportsman,
     Primary,
+    UMO,
 )
 from .forms import (
     SportTypeForm,
@@ -214,7 +215,7 @@ class SportsmanDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(SportsmanDetailView, self).get_context_data(**kwargs)
         context['primary'] = Primary.objects.filter(pk=self.object.pk)
-        print(context)
+        context['umo'] = UMO.objects.filter(pk=self.object.pk)
         return context
 
     def get_object(self):

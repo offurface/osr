@@ -4,16 +4,53 @@
 
 {% block content %}
 <main>
-  <div class="container-fluid">
-    <div class="row justify-content-around">
-      <div class="col-md-7">
-        <h2>{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
+  <div class="model-detail">
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-7">
+          <h2>{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
+        </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-7">
+          <h2>Первичные обследования:</h2>
+          <ul>
+          {% for i in primary %}
+            <li>
+              <a href="">
+                <h3>{{ i.date }} {{ i.stage }}</h3>
+              </a>
+            </li>
+          {% empty %}
+            <h3>Нет обследований.</h3>
+          {% endfor %}
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-7">
+          <h2>Углубленные медецинские обследования обследования</h2>
+          <ul>
+          {% for i in umo %}
+          <li>
+            <a href="">
+              <h3>{{ i.date }} {{ i.stage }}</h3>
+            </a>
+          </li>
+          {% empty %}
+            <h3>Нет обследований.</h3>
+          {% endfor %}
+        </ul>
+        </div>
+      </div>
+
     </div>
 
-    <div class="row justify-content-around">
-      .col-md-7
-    </div>
   </div>
 </main>
 {% endblock content %}

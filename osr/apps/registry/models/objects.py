@@ -71,6 +71,11 @@ BODY_TYPE = (
     ('Мезоморф', 'Мезоморф'),
 )
 
+STAGE = (
+    ('1 этап', '1 этап'),
+    ('2 этап', '2 этап'),
+    ('3 этап', '3 этап'),
+)
 
 class Coach(models.Model):
     name = models.CharField(max_length=150, verbose_name="Имя")
@@ -146,6 +151,8 @@ class Sportsman(models.Model):
 
 class Survey(models.Model):
     date = models.DateField(auto_now_add=False, verbose_name="Дата обследования", blank=True, null=True)
+    stage = models.CharField(max_length=15, choices=STAGE,
+                                                verbose_name="Этап", blank=True, null=True)
     sportsman = models.ForeignKey(Sportsman, on_delete=models.CASCADE, verbose_name="Спортсмен", blank=True, null=True)
     weight = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Вес тела (кг)", blank=True, null=True)
     length = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Длина тела(см)", blank=True, null=True)
