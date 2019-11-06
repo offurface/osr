@@ -183,7 +183,7 @@ class ParentDeleteView(DeleteView):
 class SportsmanListView(ListView):
     template_name = "registry/sportsman/sportsman_list.html"
     queryset = Sportsman.objects.all()
-    paginate_by = 7
+    paginate_by = 20
 
 @method_decorator(login_required, name='dispatch')
 class SportsmanCreateView(CreateView):

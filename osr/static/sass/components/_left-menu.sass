@@ -1,6 +1,18 @@
 .left-menu
-  background-color: $accent
-  box-shadow: inset 0 0 20px gray
+  background-color: $left-menu-bgc
+  box-shadow: inset 0 0 20px rgba(0,0,0, 0.2)
+  border: 4px solid $left-menu-hover
+
+  .user
+
+    width: 100%
+    text-align: center
+    padding: 2rem 0
+    font-size: 1.3rem
+    &__name
+    &__email
+      font-size: 1.1rem
+
   ul
     padding: 0
     margin: 0
@@ -13,6 +25,6 @@
         color: white
         width: 100%
         &:hover
-          transform: scale(1.06)
+          transform: scale(1.05)
           text-decoration: none
-          background-color: gray
+          background-color: $left-menu-hover

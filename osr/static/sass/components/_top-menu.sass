@@ -4,9 +4,28 @@
   width: 100%
   z-index: 2
   background-color: $top-menu-bgc
+  display: flex
+  justify-content: space-between
+  align-items: center
   .hamburger
     &-inner
       background-color: white
       &:before,&::after
         background-color: inherit
   .is-active
+    .hamburger-inner
+      &:before,&::after
+        background-color: red
+
+  .top-bar
+    margin-right: 2rem
+    .pagination
+      font-size: 1.4rem
+      font-weight: bold
+      color: white
+      &__link
+        color: white
+        font-size: 1.6rem
+        &:hover
+          text-decoration: none
+

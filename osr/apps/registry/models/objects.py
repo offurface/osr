@@ -148,9 +148,10 @@ class Sportsman(models.Model):
     verbose_name="Отчество")
     date_of_birth = models.DateField(
     verbose_name="Дата рождения")
-    gender = models.CharField(max_length=10, choices=GENDER,
+    gender = models.CharField(max_length=10, choices=GENDER, blank=True, null=True,
     verbose_name="Пол")
-    location = models.TextField(verbose_name="Место жительства", blank=True, null=True)
+    location = models.TextField(blank=True, null=True,
+    verbose_name="Место жительства")
     telephone = models.CharField(max_length=12, verbose_name="Контактный номер", blank=True, null=True)
     sports_facility = models.CharField(max_length=250, verbose_name="Спортивное учреждение", blank=True, null=True)
     swimming_skills = models.BooleanField(blank=True, verbose_name="Умение плавать")

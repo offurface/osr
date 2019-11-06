@@ -18,6 +18,8 @@
         <span class="hamburger-inner"></span>
       </span>
     </button>
+    {% block top-menu %}
+    {% endblock %}
   </nav>
   {% endif %}
 
@@ -28,6 +30,15 @@
 
   {% if user.is_authenticated %}
   <div class="left-menu" off-canvas="left-menu left push">
+    <div class="user">
+      <div class="user">
+        <div class="user__img">
+          <img src="" alt="">
+        </div>
+        <div class="user__name">{{ user.last_name }} {{ user.first_name }}</div>
+        <div class="user__email">{{ user.email }}</div>
+      </div>
+    </div>
     <ul>
       <li><a href="{% url 'registry' %}">Главная</a></li>
       <li><a href="{% url 'sport-type-list' %}">Виды спорта</a></li>
