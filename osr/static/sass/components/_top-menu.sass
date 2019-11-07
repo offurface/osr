@@ -1,4 +1,5 @@
 .top-menu
+  height: 5.7rem
   position: fixed
   top: 0
   width: 100%
@@ -7,6 +8,7 @@
   display: flex
   justify-content: space-between
   align-items: center
+  box-shadow: 0 0 4px black
   .hamburger
     &-inner
       background-color: white
@@ -15,17 +17,29 @@
   .is-active
     .hamburger-inner
       &:before,&::after
-        background-color: red
+        background-color: $danger
 
-  .top-bar
-    margin-right: 2rem
-    .pagination
-      font-size: 1.4rem
-      font-weight: bold
-      color: white
-      &__link
+  .bar-
+    &left
+      height: 100%
+      display: flex
+      align-items: center
+      h1
         color: white
-        font-size: 1.6rem
-        &:hover
-          text-decoration: none
+        font-size: 18px
+
+    &right
+      height: 100%
+      display: flex
+      align-items: center
+      .pagination
+        font-size: 1.8rem
+        font-weight: bold
+        color: white
+        padding: 0 2rem
+        &__link
+          color: white
+          font-size: 1.6rem
+          &:hover
+            text-decoration: none
 

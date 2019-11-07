@@ -13,13 +13,22 @@
 
   {% if user.is_authenticated %}
   <nav class="top-menu" canvas="">
-    <button class="hamburger hamburger--3dx" type="button">
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
-    {% block top-menu %}
-    {% endblock %}
+    <div class="bar-left">
+      <button class="hamburger hamburger--3dx" type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      {% block bar-left %}
+      {% endblock %}
+    </div>
+
+
+    <div class="bar-right">
+      {% block bar-right %}
+      {% endblock %}
+    </div>
+
   </nav>
   {% endif %}
 
@@ -30,15 +39,23 @@
 
   {% if user.is_authenticated %}
   <div class="left-menu" off-canvas="left-menu left push">
+
     <div class="user">
-      <div class="user">
-        <div class="user__img">
-          <img src="" alt="">
-        </div>
-        <div class="user__name">{{ user.last_name }} {{ user.first_name }}</div>
-        <div class="user__email">{{ user.email }}</div>
+      <div class="user__img">
+        <img src="" alt="">
       </div>
+      <div class="user__name">
+        {{ user.last_name }} {{ user.first_name }}
+        <a class="user__logout" href="{% url 'logout' %}">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </div>
+      <div class="user__email">
+        {{ user.email }}
+      </div>
+
     </div>
+
     <ul>
       <li>
         <a href="{% url 'registry' %}"><i class="fas fa-caret-right"></i> Главная</a>
@@ -55,8 +72,8 @@
       <li>
         <a href="{% url 'sportsman-list' %}"><i class="fas fa-caret-right"></i> Спортсмены</a>
       </li>
-      <!-- <li><a href=""></a></li> -->
     </ul>
+
   </div>
   {% endif %}
 

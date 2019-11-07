@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 
+
 {% block title %}Спортсмены{% endblock title %}
 
-{% block top-menu %}
-<div class="top-bar">
+{% block bar-left %}
+<div class="title">
+  <h1>Список спортсменов</h1>
+</div>
+{% endblock bar-left %}
+
+{% block bar-right %}
+
   {% if is_paginated %}
     <div class="pagination">
         {% if page_obj.has_previous %}
@@ -21,8 +28,9 @@
         {% endif %}
     </div>
   {% endif %}
-</div>
-{% endblock top-menu %}
+
+{% endblock bar-right %}
+
 
 {% block content %}
 <main>
