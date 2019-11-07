@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div class="center-wrap">
+<div class="center-wrap login-wrap">
 
   {% if user.is_authenticated %}
   <div class="text-align-center">
@@ -21,18 +21,26 @@
     {% csrf_token %}
     {% load widget_tweaks %}
 
+    <div class="form-model__title">
+      <h1>Форма Авторизации</h1>
+    </div>
+
     <div class="form-model__field-wrap">
-      {{ form.username|add_label_class:"form-model__label" }}
+      <label class="form-model__label" for="id_username">
+        Логин:
+      </label>
       {{ form.username|add_class:"form-model__field" }}
     </div>
 
     <div class="form-model__field-wrap">
-      {{ form.password|add_label_class:"form-model__label" }}
+      <label class="form-model__label" for="id_password">
+        Пароль:
+      </label>
       {{ form.password|add_class:"form-model__field" }}
     </div>
 
     <div class="form-model__btn-box">
-      <input class="btn btn-succes" type="submit" value="Войти">
+      <input class="btn btn-second" type="submit" value="Войти">
     </div>
   </form>
   {% endif %}
