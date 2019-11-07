@@ -264,13 +264,13 @@ class Primary(Survey):
     verbose_name="Форма грудной клетки")
     back_shape = models.CharField(max_length=20, choices=BACK_SHAPE, blank=True, null=True,
     verbose_name="Форма спины")
-    speed = models.PositiveIntegerField(
+    speed = models.PositiveIntegerField(blank=True, null=True,
     verbose_name="Быстрота")
-    strength = models.PositiveIntegerField(
+    strength = models.PositiveIntegerField( blank=True, null=True,
     verbose_name="Сила%")
-    stamina = models.PositiveIntegerField(
+    stamina = models.PositiveIntegerField( blank=True, null=True,
     verbose_name="Выносливость%")
-    coordination = models.PositiveIntegerField(
+    coordination = models.PositiveIntegerField(blank=True, null=True,
     verbose_name="Координация%")
     nervous_system_potential = models.CharField(max_length=15, choices=NERVOUS_SYSTEM_POTENTIAL, default='Средняя', blank=True, null=True,
     verbose_name="Потенциал нервной системы")

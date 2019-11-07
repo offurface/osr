@@ -214,8 +214,11 @@ class SportsmanDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SportsmanDetailView, self).get_context_data(**kwargs)
-        context['primary'] = Primary.objects.filter(pk=self.object.pk)
-        context['umo'] = UMO.objects.filter(pk=self.object.pk)
+        context['primary'] = Primary.objects.filter(sportsman_id=self.object.pk)
+        context['umo'] = UMO.objects.filter(sportsman_id=self.object.pk)
+
+        print(context['primary'])
+
         return context
 
     def get_object(self):
@@ -248,7 +251,7 @@ class PrimaryCreateView(CreateView):
     template_name = "registry/primary/primary_create.html"
     form_class = PrimaryForm
     queryset = Primary.objects.all()
-    success_url = 'registry/'
+    success_url = '../'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -256,6 +259,18 @@ class PrimaryCreateView(CreateView):
         obj.save()
         return super().form_valid(form)
 
+@method_decorator(login_required, name='dispatch')
+class UMOCreateView(CreateView):
+    template_name = "registry/umo/umo_create.html"
+    form_class = UMOForm
+    queryset = UMO.objects.all()
+    success_url = '../'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.sportsman_id = self.kwargs['pk']
+        obj.save()
+        return super().form_valid(form)
 # @method_decorator(login_required, name='dispatch')
 # class SportsmanUpdateView(UpdateView):
 #     template_name = "registry/sportsman/sportsman_update.html"

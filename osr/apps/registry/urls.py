@@ -35,6 +35,6 @@ urlpatterns = [
         path('<int:pk>/update/', views.SportsmanUpdateView.as_view(), name='sportsman-update'),
         path('<int:pk>/delete/', views.SportsmanDeleteView.as_view(), name='sportsman-delete'),
         path('<int:pk>/primary/', views.PrimaryCreateView.as_view(), name='sportsman-primary'),
-        #path('<int:pk>/umo/', views.UMOCreateView.as_view(), name='sportsman-umo'),
+        path('<int:pk>/umo/', views.UMOCreateView.as_view(), name='sportsman-umo'),
     ])),
 ]

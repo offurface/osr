@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}{{ object.title }}{% endblock title %}
+{% block title %}{% endblock title %}
+
+{% block bar-left %}
+<div class="title">
+  <h1>Информация о спортсмене</h1>
+</div>
+{% endblock bar-left %}
+
+{% block bar-right %}
+
+{% endblock bar-right %}
 
 {% block content %}
 <main>
@@ -10,7 +20,7 @@
 
       <div class="row" style="margin-bottom: 2rem;">
         <div class="col-md-7">
-          <h2>{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
+          <h2 class="model-detail__title">{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
           <p>
             Дата рождения: {{ object.date_of_birth }}
           </p>
@@ -19,8 +29,9 @@
 
       <div class="row" style="margin-bottom: 1rem;">
         <div class="col-md-12">
-          <h2>Первичные обследования:</h2>
-          <ul>
+          <h2 class="model-detail__title">Первичные обследования:</h2>
+          <a class="model-detail__add" href="primary/">Добавить обследование <i class="fas fa-plus"></i></a>
+          <ul class="model-detail__ul">
           {% for i in primary %}
             <li>
               <a href="#">
@@ -37,7 +48,8 @@
 
       <div class="row">
         <div class="col-md-12">
-          <h2>Углубленные медецинские обследования обследования:</h2>
+          <h2 class="model-detail__title">Углубленные медецинские обследования обследования:</h2>
+          <a class="model-detail__add" href="umo/">Добавить обследование <i class="fas fa-plus"></i></a>
           <ul>
           {% for i in umo %}
           <li>
