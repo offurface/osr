@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{% endblock title %}
+{% block title %}Информация о спортсмене{% endblock title %}
 
 {% block bar-left %}
 <div class="title">
@@ -9,7 +9,9 @@
 {% endblock bar-left %}
 
 {% block bar-right %}
-
+<a href="../" class="btn">
+  Назад
+</a>
 {% endblock bar-right %}
 
 {% block content %}
@@ -23,6 +25,15 @@
           <h2 class="model-detail__title">{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
           <p>
             Дата рождения: {{ object.date_of_birth }}
+          </p>
+          <p>
+            Спортивное учереждение: {{ object.sports_facility }}
+          </p>
+          <p>
+            Тренер: {{ object.coach }}
+          </p>
+          <p>
+            Вид спорта: {{ object.sport_type }}
           </p>
         </div>
       </div>

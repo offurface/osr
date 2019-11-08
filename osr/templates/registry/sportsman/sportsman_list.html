@@ -52,6 +52,7 @@
         <th>Желание</th>
         <th>Тренер</th>
         <th>Представитель</th>
+        <th>Спортивное учереждение</th>
         <th>Вид спорта</th>
       </thead>
       <tbody>
@@ -76,6 +77,7 @@
           <td>{{ i.sport_desire | default:"" | yesno:"Есть,Нет" }}</td>
           <td>{{ i.coach | default:"" }}</td>
           <td>{{ i.parent | default:"" }}</td>
+          <td>{{ i.sports_facility | default:"" }}</td>
           <td>{{ i.sport_type | default:"" }}</td>
         </tr>
         {% endfor %}
