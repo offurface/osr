@@ -216,9 +216,6 @@ class SportsmanDetailView(DetailView):
         context = super(SportsmanDetailView, self).get_context_data(**kwargs)
         context['primary'] = Primary.objects.filter(sportsman_id=self.object.pk)
         context['umo'] = UMO.objects.filter(sportsman_id=self.object.pk)
-
-        print(context['primary'])
-
         return context
 
     def get_object(self):
