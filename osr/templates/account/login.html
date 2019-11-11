@@ -7,42 +7,47 @@
 <div class="center-wrap login-wrap">
 
   {% if user.is_authenticated %}
-  <div class="text-align-center">
-    <h1>
-      {{ user.last_name }} {{ user.first_name }} <br>
-      успешно авторизированы.<br>
-      <a href="{% url 'registry' %}">Перейти к реестру</a><br>
-      <a href="{% url 'logout' %}">Завершить сессию</a>
-    </h1>
+  <div class="wrap-one">
+    <div class="text-align-center">
+      <h1>
+        {{ user.last_name }} {{ user.first_name }} <br>
+        успешно авторизированы.<br>
+        <a href="{% url 'registry' %}">Перейти к реестру</a><br>
+        <a href="{% url 'logout' %}">Завершить сессию</a>
+      </h1>
+    </div>
   </div>
   {% else %}
-  <form class="form-model" action="" method="POST">
+  <div class="wrap-one">
+    <form class="form-model" action="" method="POST">
 
-    {% csrf_token %}
-    {% load widget_tweaks %}
+      {% csrf_token %}
+      {% load widget_tweaks %}
 
-    <div class="form-model__title">
-      <h1>Форма Авторизации</h1>
-    </div>
+      <div class="form-model__title">
+        <h1>Форма Авторизации</h1>
+      </div>
 
-    <div class="form-model__field-wrap">
-      <label class="form-model__label" for="id_username">
-        Логин:
-      </label>
-      {{ form.username|add_class:"form-model__field" }}
-    </div>
+      <div class="form-model__field-wrap">
+        <label class="form-model__label" for="id_username">
+          Логин:
+        </label>
+        {{ form.username|add_class:"form-model__field" }}
+      </div>
 
-    <div class="form-model__field-wrap">
-      <label class="form-model__label" for="id_password">
-        Пароль:
-      </label>
-      {{ form.password|add_class:"form-model__field" }}
-    </div>
+      <div class="form-model__field-wrap">
+        <label class="form-model__label" for="id_password">
+          Пароль:
+        </label>
+        {{ form.password|add_class:"form-model__field" }}
+      </div>
 
-    <div class="form-model__btn-box">
-      <input class="btn btn-second" type="submit" value="Войти">
-    </div>
-  </form>
+      <div class="form-model__btn-box">
+        <input class="btn btn-second" type="submit" value="Войти">
+      </div>
+    </form>
+  </div>
+
   {% endif %}
 </div>
 

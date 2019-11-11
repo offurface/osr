@@ -4,7 +4,31 @@
 
 {% block content %}
 <main>
-  <div class="container-fluid">
+  <div class="form-wrap">
+      <div class="wrap-one">
+        <div class="container">
+          <form class="form-model" action="" method="POST">
+              {% csrf_token %}
+              {% load widget_tweaks %}
+              <h2>Первичное обследование</h2>
+
+              <div class="row">
+                {% for field in form.visible_fields %}
+                <div class="col-md-7">
+                  <div class="form-model__field-wrap">
+                    {{ field.errors }}
+                    {{ field|add_label_class:"form-model__label" }}
+                    {{ field|add_class:"form-model__field" }}
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+<!--  <div class="container-fluid">
     <div class="row justify-content-around">
       <div class="col-md-7">
         <form class="form-model" action="" method="POST">
@@ -38,6 +62,6 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 </main>
 {% endblock content %}

@@ -1,5 +1,11 @@
+.form-wrap
+  display: flex
+  background-color: $light-accent
+  min-height: calc(100vh - 5.7rem)
+  display: flex
+  justify-content: center
+  align-items: center
 .form-model
-  padding: 3rem 0
   font-size: 1.6rem
   &__field-wrap
     display: flex
@@ -9,7 +15,9 @@
 
 
   &__label
+    white-space: pre
     padding: .5rem 1rem
+    word-wrap: none
   &__field
     padding: .5rem 1rem
     border: 1px solid gray
@@ -23,5 +31,11 @@
       margin: .5rem
   textarea
     height: 4.5rem
+
+  &__title
+    font-size: 3.2rem
+    margin-bottom: 2rem
+  &__subtitle
+
 
 

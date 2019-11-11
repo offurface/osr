@@ -16,132 +16,137 @@
 
 {% block content %}
 <main>
-  <div class="container">
-    <form class="form-model" action="" method="POST">
-      {% csrf_token %}
-      {% load widget_tweaks %}
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.surname|add_label_class:"form-model__label" }}
-            {{ form.surname|add_class:"form-model__field" }}
+  <div class="form-wrap">
+    <div class="wrap-one">
+      <div class="container">
+        <form class="form-model " action="" method="POST">
+          {% csrf_token %}
+          {% load widget_tweaks %}
+          <h1 class="form-model__title">Анкета спортсмена:</h1>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.surname|add_label_class:"form-model__label" }}
+                {{ form.surname|add_class:"form-model__field" }}
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.name|add_label_class:"form-model__label" }}
+                {{ form.name|add_class:"form-model__field" }}
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.patronymic|add_label_class:"form-model__label" }}
+                {{ form.patronymic|add_class:"form-model__field" }}
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.name|add_label_class:"form-model__label" }}
-            {{ form.name|add_class:"form-model__field" }}
+
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-model__field-wrap">
+                {{ form.gender|add_label_class:"form-model__label" }}
+                {{ form.gender|add_class:"form-model__field" }}
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-model__field-wrap">
+                {{ form.date_of_birth|add_label_class:"form-model__label" }}
+                {{ form.date_of_birth|add_class:"form-model__field datepicker-here" }}
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.telephone|add_label_class:"form-model__label" }}
+                {{ form.telephone|add_class:"form-model__field" }}
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.location|add_label_class:"form-model__label" }}
+                {{ form.location|add_class:"form-model__field" }}
+              </div>
+            </div>
+
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.patronymic|add_label_class:"form-model__label" }}
-            {{ form.patronymic|add_class:"form-model__field" }}
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.parent|add_label_class:"form-model__label" }}
+                {{ form.parent|add_class:"form-model__field" }}
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.coach|add_label_class:"form-model__label" }}
+                {{ form.coach|add_class:"form-model__field" }}
+              </div>
+            </div>
           </div>
-        </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.school_progress|add_label_class:"form-model__label" }}
+                {{ form.school_progress|add_class:"form-model__field" }}
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.sports_facility|add_label_class:"form-model__label" }}
+                {{ form.sports_facility|add_class:"form-model__field" }}
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.sport_type|add_label_class:"form-model__label" }}
+                {{ form.sport_type|add_class:"form-model__field" }}
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-model__field-wrap">
+                {{ form.rank|add_label_class:"form-model__label" }}
+                {{ form.rank|add_class:"form-model__field" }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-model__checkbox-wrap">
+                {{ form.sport_desire|add_label_class:"form-model__label" }}
+                {{ form.sport_desire|add_class:"form-model__field" }}
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-model__checkbox-wrap">
+                {{ form.swimming_skills|add_label_class:"form-model__label" }}
+                {{ form.swimming_skills|add_class:"form-model__field" }}
+              </div>
+            </div>
+
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-4">
+              <div class="form-model__btn-box">
+                <input class="btn btn-succes" type="submit" value="Сохранить">
+                <a class="btn btn-second" href="../">Назад</a>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-
-      <div class="row">
-        <div class="col-md-2">
-          <div class="form-model__field-wrap">
-            {{ form.gender|add_label_class:"form-model__label" }}
-            {{ form.gender|add_class:"form-model__field" }}
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-model__field-wrap">
-            {{ form.date_of_birth|add_label_class:"form-model__label" }}
-            {{ form.date_of_birth|add_class:"form-model__field datepicker-here" }}
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.telephone|add_label_class:"form-model__label" }}
-            {{ form.telephone|add_class:"form-model__field" }}
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.location|add_label_class:"form-model__label" }}
-            {{ form.location|add_class:"form-model__field" }}
-          </div>
-        </div>
-
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.parent|add_label_class:"form-model__label" }}
-            {{ form.parent|add_class:"form-model__field" }}
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.coach|add_label_class:"form-model__label" }}
-            {{ form.coach|add_class:"form-model__field" }}
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.school_progress|add_label_class:"form-model__label" }}
-            {{ form.school_progress|add_class:"form-model__field" }}
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.sports_facility|add_label_class:"form-model__label" }}
-            {{ form.sports_facility|add_class:"form-model__field" }}
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.sport_type|add_label_class:"form-model__label" }}
-            {{ form.sport_type|add_class:"form-model__field" }}
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="form-model__field-wrap">
-            {{ form.rank|add_label_class:"form-model__label" }}
-            {{ form.rank|add_class:"form-model__field" }}
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-model__checkbox-wrap">
-            {{ form.sport_desire|add_label_class:"form-model__label" }}
-            {{ form.sport_desire|add_class:"form-model__field" }}
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-model__checkbox-wrap">
-            {{ form.swimming_skills|add_label_class:"form-model__label" }}
-            {{ form.swimming_skills|add_class:"form-model__field" }}
-          </div>
-        </div>
-
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-4">
-          <div class="form-model__btn-box">
-            <input class="btn btn-succes" type="submit" value="Сохранить">
-            <a class="btn btn-second" href="../">Назад</a>
-          </div>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
 </main>
 {% endblock content %}
