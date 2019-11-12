@@ -2,6 +2,18 @@
 
 {% block title %}Добавить Анкету{% endblock title %}
 
+{% block bar-left %}
+<div class="title">
+  <h1>Углубленное медецинское обследование</h1>
+</div>
+{% endblock bar-left %}
+
+{% block bar-right %}
+<a href="../" class="btn">
+  Назад
+</a>
+{% endblock bar-right %}
+
 {% block content %}
 <main>
   <div class="form-wrap">
@@ -11,14 +23,256 @@
             {% csrf_token %}
             {% load widget_tweaks %}
 
-            <h1 class="form-model__title">Анкета первичного обследования:</h2>
+            <h1 class="form-model__title">Анкета УМО:</h2>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-model__field-wrap">
+                  {{ form.date|add_label_class:"form-model__label" }}
+                  {{ form.date|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.stage|add_label_class:"form-model__label" }}
+                  {{ form.stage|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+            </div>
 
-            <h2 class="form-model__subtitle">Общая информация</h2>
-            <h2 class="form-model__subtitle">Общая информация</h2>
-            <h2 class="form-model__subtitle">Общая информация</h2>
-            <h2 class="form-model__subtitle">Общая информация</h2>
+            <h2 class="form-model__subtitle">Физическое развитие:</h2>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.weight|add_label_class:"form-model__label" }}
+                  {{ form.weight|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.length|add_label_class:"form-model__label" }}
+                  {{ form.length|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.spit_leg_length|add_label_class:"form-model__label" }}
+                  {{ form.spit_leg_length|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.foot_length|add_label_class:"form-model__label" }}
+                  {{ form.foot_length|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.torso_length_7|add_label_class:"form-model__label" }}
+                  {{ form.torso_length_7|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.chest_girth_inspiration|add_label_class:"form-model__label" }}
+                  {{ form.chest_girth_inspiration|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.exhaling_chest|add_label_class:"form-model__label" }}
+                  {{ form.exhaling_chest|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.excursion_difference|add_label_class:"form-model__label" }}
+                  {{ form.excursion_difference|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.spirometry_yellow|add_label_class:"form-model__label" }}
+                  {{ form.spirometry_yellow|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.deadweight_dynamometry|add_label_class:"form-model__label" }}
+                  {{ form.deadweight_dynamometry|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.dynamometry_right|add_label_class:"form-model__label" }}
+                  {{ form.dynamometry_right|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.dynamometry_left|add_label_class:"form-model__label" }}
+                  {{ form.dynamometry_left|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.tallow_mass|add_label_class:"form-model__label" }}
+                  {{ form.tallow_mass|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.muscle_mass|add_label_class:"form-model__label" }}
+                  {{ form.muscle_mass|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.open_eyes|add_label_class:"form-model__label" }}
+                  {{ form.open_eyes|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.close_eyes|add_label_class:"form-model__label" }}
+                  {{ form.close_eyes|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
 
+            <h2 class="form-model__subtitle">Здоровье</h2>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.arterial_pressure_f|add_label_class:"form-model__label" }}
+                  {{ form.arterial_pressure_f|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.arterial_pressure_s|add_label_class:"form-model__label" }}
+                  {{ form.arterial_pressure_s|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.mpc|add_label_class:"form-model__label" }}
+                  {{ form.mpc|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.rest|add_label_class:"form-model__label" }}
+                  {{ form.rest|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.load|add_label_class:"form-model__label" }}
+                  {{ form.load|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.ultrasound_heart|add_label_class:"form-model__label" }}
+                  {{ form.ultrasound_heart|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.plantometry|add_label_class:"form-model__label" }}
+                  {{ form.plantometry|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.cns_functional|add_label_class:"form-model__label" }}
+                  {{ form.cns_functional|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.cns_level|add_label_class:"form-model__label" }}
+                  {{ form.cns_level|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.grv|add_label_class:"form-model__label" }}
+                  {{ form.grv|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.golden_ratio|add_label_class:"form-model__label" }}
+                  {{ form.golden_ratio|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.voltage_index|add_label_class:"form-model__label" }}
+                  {{ form.voltage_index|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.spectral_analysis|add_label_class:"form-model__label" }}
+                  {{ form.spectral_analysis|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.integral_indicator|add_label_class:"form-model__label" }}
+                  {{ form.integral_indicator|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.adaptive_capabilities|add_label_class:"form-model__label" }}
+                  {{ form.adaptive_capabilities|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.functional_reserves|add_label_class:"form-model__label" }}
+                  {{ form.functional_reserves|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
 
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <div class="form-model__btn-box">
+                  <input class="btn btn-succes" type="submit" value="Сохранить">
+                  <a class="btn btn-second" href="../">Назад</a>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>

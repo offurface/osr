@@ -2,14 +2,27 @@
 
 {% block title %}Добавить{% endblock title %}
 
+{% block bar-left %}
+<div class="title">
+  <h1>Добавить запись</h1>
+</div>
+{% endblock bar-left %}
+
+{% block bar-right %}
+<a href="../" class="btn">
+  Назад
+</a>
+{% endblock bar-right %}
+
 {% block content %}
 <main>
-  <div class="container-fluid">
-    <div class="row justify-content-around">
-      <div class="col-md-7">
+  <div class="form-wrap">
+    <div class="wrap-one">
+      <div class="container">
         <form class="form-model" action="" method="POST">
           {% csrf_token %}
           {% load widget_tweaks %}
+          <h2 class="form-model__title">Анкета тренера:</h2>
 
           <div class="form-model__field-wrap">
             {{ form.name|add_label_class:"form-model__label" }}
