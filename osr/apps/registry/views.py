@@ -268,6 +268,7 @@ class UMOCreateView(CreateView):
         obj.sportsman_id = self.kwargs['pk']
         obj.save()
         return super().form_valid(form)
+
 # @method_decorator(login_required, name='dispatch')
 # class SportsmanUpdateView(UpdateView):
 #     template_name = "registry/sportsman/sportsman_update.html"
