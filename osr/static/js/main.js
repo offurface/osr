@@ -17,4 +17,11 @@ $(document).ready(function() {
     controller.toggle( 'left-menu' );
   });
 
+
+
+  $('.full-screen-tabele').click(function(e){
+    $('.table').fullScreen();
+    e.preventDefault();
+  });
+
 });

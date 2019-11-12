@@ -253,6 +253,7 @@ class PrimaryCreateView(CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.sportsman_id = self.kwargs['pk']
+        obj.stage = "Первичный"
         obj.save()
         return super().form_valid(form)
 

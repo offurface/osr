@@ -225,7 +225,7 @@ class Survey(models.Model):
     verbose_name="Дата обследования")
     stage = models.CharField(max_length=15, choices=STAGE, blank=True, null=True,
     verbose_name="Этап")
-    sportsman = models.ForeignKey(Sportsman, on_delete=models.CASCADE, blank=True, null=True,
+    sportsman = models.ForeignKey(Sportsman, on_delete=models.CASCADE,
     verbose_name="Спортсмен")
     weight = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True,
     verbose_name="Вес тела (кг)")
