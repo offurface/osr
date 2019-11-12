@@ -293,12 +293,6 @@ class Survey(models.Model):
 
 
 class Primary(Survey):
-    # place_of_birth = models.TextField(verbose_name="Место рождения")# удалить
-    # place_of_study = models.CharField(max_length=300, verbose_name="Место обучения")# удалить
-
-    date_of_test = models.DateField(auto_now_add=False, blank=True, null=True,
-    verbose_name="Дата прохождения тестирования")
-
     past_diseases = models.CharField(max_length=250, blank=True, null=True,
     verbose_name="Перенесенные заболевания(травмы)")
     height_father = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True,
@@ -307,11 +301,11 @@ class Primary(Survey):
     verbose_name="Вес отца")
     body_type_father = models.CharField(max_length=10, choices=BODY_TYPE, blank=True, null=True,
     verbose_name="Тип тела отца")
-    height_mather = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True,
+    height_mother = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True,
     verbose_name="Рост матери")
-    weight_mather = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True,
+    weight_mother = models.DecimalField(max_digits=4, decimal_places=1, blank=True, null=True,
     verbose_name="Вес матери")
-    body_type_mather = models.CharField(max_length=10, choices=BODY_TYPE, blank=True, null=True,
+    body_type_mother = models.CharField(max_length=10, choices=BODY_TYPE, blank=True, null=True,
     verbose_name="Тип тела матери")
     chest_shape = models.CharField(max_length=15, choices=CHEST_SHAPE, blank=True, null=True,
     verbose_name="Форма грудной клетки")
@@ -350,14 +344,12 @@ class Primary(Survey):
         return "%s %s" % (self.date_of_test, self.sportsman)
 
     class Meta:
-        ordering = ("date_of_test",)
+        ordering = ("date",)
         verbose_name = "Первичное"
         verbose_name_plural = "Первичные"
 
 
 class UMO(Survey):
-    date_of_pass = models.DateField(auto_now_add=False, blank=True, null=True,
-    verbose_name="Дата прохождения УМО")
     rest = models.PositiveIntegerField(blank=True, null=True,
     verbose_name="ЭКГ в покое")
     load = models.PositiveIntegerField(blank=True, null=True,
@@ -389,7 +381,7 @@ class UMO(Survey):
         return "%s" % self.date_of_pass
 
     class Meta:
-        ordering = ("date_of_pass",)
+        ordering = ("date",)
         verbose_name = "УМО"
         verbose_name_plural = "УМО"
 

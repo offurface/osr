@@ -5,63 +5,131 @@
 {% block content %}
 <main>
   <div class="form-wrap">
-      <div class="wrap-one">
+      <div class="wrap-two">
         <div class="container">
           <form class="form-model" action="" method="POST">
-              {% csrf_token %}
-              {% load widget_tweaks %}
-              <h2>Первичное обследование</h2>
+            {% csrf_token %}
+            {% load widget_tweaks %}
 
-              <div class="row">
-                {% for field in form.visible_fields %}
-                <div class="col-md-7">
-                  <div class="form-model__field-wrap">
-                    {{ field.errors }}
-                    {{ field|add_label_class:"form-model__label" }}
-                    {{ field|add_class:"form-model__field" }}
-                  </div>
+            <h1 class="form-model__title">Анкета первичного обследования:</h2>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-model__field-wrap">
+                  {{ form.date|add_label_class:"form-model__label" }}
+                  {{ form.date|add_class:"form-model__field datepicker-here" }}
                 </div>
-                {% endfor %}
               </div>
+            </div>
+
+            <h2 class="form-model__subtitle">Телосложение родителей:</h2>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.height_father|add_label_class:"form-model__label" }}
+                  {{ form.height_father|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.weight_father|add_label_class:"form-model__label" }}
+                  {{ form.weight_father|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.body_type_father|add_label_class:"form-model__label" }}
+                  {{ form.body_type_father|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.height_mother|add_label_class:"form-model__label" }}
+                  {{ form.height_mother|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.weight_mother|add_label_class:"form-model__label" }}
+                  {{ form.weight_mother|add_class:"form-model__field" }}
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-model__field-wrap">
+                  {{ form.body_type_mother|add_label_class:"form-model__label" }}
+                  {{ form.body_type_mother|add_class:"form-model__field" }}
+                </div>
+              </div>
+            </div>
+
+            <h2 class="form-model__subtitle">Физическое развитие:</h2>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.weight|add_label_class:"form-model__label" }}
+                  {{ form.weight|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.length|add_label_class:"form-model__label" }}
+                  {{ form.length|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.spit_leg_length|add_label_class:"form-model__label" }}
+                  {{ form.spit_leg_length|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.foot_length|add_label_class:"form-model__label" }}
+                  {{ form.foot_length|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-model__field-wrap">
+                  {{ form.torso_length_7|add_label_class:"form-model__label" }}
+                  {{ form.torso_length_7|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.chest_girth_inspiration|add_label_class:"form-model__label" }}
+                  {{ form.chest_girth_inspiration|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.exhaling_chest|add_label_class:"form-model__label" }}
+                  {{ form.exhaling_chest|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.excursion_difference|add_label_class:"form-model__label" }}
+                  {{ form.excursion_difference|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-model__field-wrap">
+                  {{ form.spirometry_yellow|add_label_class:"form-model__label" }}
+                  {{ form.spirometry_yellow|add_class:"form-model__field datepicker-here" }}
+                </div>
+              </div>
+            </div>
 
           </form>
         </div>
       </div>
     </div>
-<!--  <div class="container-fluid">
-    <div class="row justify-content-around">
-      <div class="col-md-7">
-        <form class="form-model" action="" method="POST">
-          {% csrf_token %}
-          {% load widget_tweaks %}
-
-          <h2>Первичное обследование</h2>
-
-        <div class="row">
-          {% for field in form.visible_fields %}
-          <div class="col-md-7">
-            <div class="form-model__field-wrap">
-              {{ field.errors }}
-              {{ field|add_label_class:"form-model__label" }}
-              {{ field|add_class:"form-model__field" }}
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="col-md-4">
-            <div class="form-model__btn-box">
-              <input class="btn btn-succes" type="submit" value="Сохранить">
-              <a class="btn btn-second" href="../">Назад</a>
-            </div>
-          </div>
-        </div>
-
-
-        </form>
-      </div>
-    </div>
-  </div> -->
 </main>
 {% endblock content %}

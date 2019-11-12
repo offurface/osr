@@ -4,40 +4,24 @@
 
 {% block content %}
 <main>
-  <div class="container-fluid">
-    <div class="row justify-content-around">
-      <div class="col-md-7">
-        <form class="form-model" action="" method="POST">
-          {% csrf_token %}
-          {% load widget_tweaks %}
+  <div class="form-wrap">
+      <div class="wrap-one">
+        <div class="container">
+          <form class="form-model" action="" method="POST">
+            {% csrf_token %}
+            {% load widget_tweaks %}
 
-          <h2>Углубленное медецинское обследование</h2>
+            <h1 class="form-model__title">Анкета первичного обследования:</h2>
 
-        <div class="row">
-          {% for field in form.visible_fields %}
-          <div class="col-md-7">
-            <div class="form-model__field-wrap">
-              {{ field.errors }}
-              {{ field|add_label_class:"form-model__label" }}
-              {{ field|add_class:"form-model__field" }}
-            </div>
-          </div>
-          {% endfor %}
+            <h2 class="form-model__subtitle">Общая информация</h2>
+            <h2 class="form-model__subtitle">Общая информация</h2>
+            <h2 class="form-model__subtitle">Общая информация</h2>
+            <h2 class="form-model__subtitle">Общая информация</h2>
+
+
+          </form>
         </div>
-
-        <div class="row justify-content-center">
-          <div class="col-md-4">
-            <div class="form-model__btn-box">
-              <input class="btn btn-succes" type="submit" value="Сохранить">
-              <a class="btn btn-second" href="../">Назад</a>
-            </div>
-          </div>
-        </div>
-
-
-        </form>
       </div>
     </div>
-  </div>
 </main>
 {% endblock content %}
