@@ -1,12 +1,15 @@
 """
 1. Спортивный результат
 
-2. Спортивный отбор - CHOISES
-    Предварительный
-    1-ий
-    2-ий
-    3-ий
 вид спорта > Этап > Спортсмены
+
+
+Гребной спорт
+Гребля на байдарках и каноэ
+Плавание
+Велоспорт
+Триатлон
+Легкая атлетика(виды выносливости)
 
 """
 
@@ -201,10 +204,10 @@ class Sportsman(models.Model):
     Заключение врача
 
 Функцион. Состоян. ВК=1.0
-    Проба PWC150
-    Проба Ромберга
-    Проба штанге
-    Проба генче
+    Проба PWC170
+    Проба Ромберга (равновесие, статик, дин)
+    Проба Штанге (на вдохе)
+    Проба Генче (на выдохе) нет в бд
 
 Психика ВК=1.0
     Темперамент
@@ -386,11 +389,11 @@ class UMO(Survey):
 #     vt_kg = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Вт/кг")
 #     mpk_lmin = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="МПК,л/мин")
 #     la_max = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="La макс, ммоль/л")
-#     potential = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="180+120/2 град/с н (потенциал)")
-#     realization = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="180+120/2 град/с н./кг(реализация)")
+#     potential = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="180+120/2 град/с н (потенциал)")добавить
+#     realization = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="180+120/2 град/с н./кг(реализация)")добавить
 #     speed_power_balance = models.DecimalField(max_digits=4, decimal_places=2,
 #                                               verbose_name="Баланс Скорость-сила 360/30 %")
-#     romberg_coefficient = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Коэффициент Ромберга")
+#     romberg_coefficient = models.DecimalField(max_digits=4, decimal_places=1, verbose_name="Коэффициент Ромберга") добавить
 #     average = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Средние(все)")
 #     omega = models.DecimalField(max_digits=4, decimal_places=2, verbose_name="Сигма")
 #
