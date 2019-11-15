@@ -92,7 +92,7 @@ class Coach(models.Model):
     verbose_name="Вид спорта")
 
     def __str__(self):
-        return "%s %s %s" % (self.surname, self.name, self.patronymic)
+        return "%s %s. %s." % (self.surname, self.name[0], self.patronymic[0])
 
     def get_absolute_url(self, *args, **kwargs):
         return reverse('coach-detail', kwargs={'pk': self.pk})

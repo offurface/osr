@@ -16,23 +16,23 @@
 
 {% block content %}
 <main>
-  <div class="model-detail" style="font-size: 1.6rem;">
-
-    <div class="container">
+  <div class="form-wrap">
+    <div class="wrap-one">
+      <div class="container">
 
       <div class="row" style="margin-bottom: 2rem;">
-        <div class="col-md-7">
+        <div class="col-md-12">
           <h2 class="model-detail__title">{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
-          <p>
+          <p class="model-detail__field">
             Дата рождения: {{ object.date_of_birth }}
           </p>
-          <p>
+          <p class="model-detail__field">
             Спортивное учереждение: {{ object.sports_facility }}
           </p>
-          <p>
+          <p class="model-detail__field">
             Тренер: {{ object.coach }}
           </p>
-          <p>
+          <p class="model-detail__field">
             Вид спорта: {{ object.sport_type }}
           </p>
         </div>
@@ -59,13 +59,13 @@
 
       <div class="row">
         <div class="col-md-12">
-          <h2 class="model-detail__title">Углубленные медецинские обследования обследования:</h2>
+          <h2 class="model-detail__title">Углубленные медецинские обследования:</h2>
           <a class="model-detail__add" href="umo/">Добавить обследование <i class="fas fa-plus"></i></a>
-          <ul>
+          <ul class="model-detail__ul">
           {% for i in umo %}
           <li>
             <a href="#">
-              <h3>{{ i.date }} {{ i.stage }}</h3>
+              <h3>{{ i.stage }} - {{ i.date }}</h3>
             </a>
           </li>
           {% empty %}
@@ -75,8 +75,8 @@
         </div>
       </div>
 
+     </div>
     </div>
-
   </div>
 </main>
 {% endblock content %}
