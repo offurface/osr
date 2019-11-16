@@ -337,7 +337,7 @@ class Primary(Survey):
     verbose_name="Рекомендации")#####
 
     def __str__(self):
-        return "%s %s" % (self.date_of_test, self.sportsman)
+        return "%s %s" % (self.date, self.stage)
 
     class Meta:
         ordering = ("date",)
@@ -374,7 +374,7 @@ class UMO(Survey):
     verbose_name="Функциональные резервы")
 
     def __str__(self):
-        return "%s" % self.date_of_pass
+        return "%s %s" % (self.date, self.stage)
 
     class Meta:
         ordering = ("date",)
