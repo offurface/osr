@@ -24,7 +24,11 @@
       <div class="row" style="margin-bottom: 2rem;">
         <div class="col-md-6">
           <div class="sportsman__img">
-            <img src="{% static 'images/registry/gender_m.jpg' %}" alt="">
+            {% if object.gender == "М" %}
+              <img src="{% static 'images/registry/gender_m.png' %}" alt="">
+            {% else %}
+              <img src="{% static 'images/registry/gender_f.png' %}" alt="">
+            {% endif %}
           </div>
 
           <h2 class="sportsman__name">{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
