@@ -40,18 +40,11 @@
         <th>
           <a href="{% url 'sportsman-create' %}" class="icon__create-table">Создать <i class="fas fa-plus"></i></a>
         </th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Отчество</th>
+        <th>ФИО</th>
         <th>Дата рождения</th>
-        <th>Пол</th>
-        <th>Место жительства</th>
-        <th>Телефон</th>
         <th>Умение плавать</th>
         <th>Оценки в школе</th>
         <th>Желание</th>
-        <th>Тренер</th>
-        <th>Представитель</th>
         <th>Спортивное учереждение</th>
         <th>Вид спорта</th>
       </thead>
@@ -65,18 +58,11 @@
               <a href="{{ i.pk }}/" class="icon__detail"><i class="fas fa-info-circle"></i></a>
             </div>
           </th>
-          <td>{{ i.surname | default:"" }}</td>
-          <td>{{ i.name | default:""}}</td>
-          <td>{{ i.patronymic | default:"" }}</td>
+          <td>{{ i.surname | default:""}} {{ i.name | default:""}} {{ i.patronymic | default:""}}</td>
           <td>{{ i.date_of_birth | default:""  }}</td>
-          <td>{{ i.gender | default:"" }}</td>
-          <td>{{ i.location | default:"" }}</td>
-          <td>{{ i.telephone | default:"" }}</td>
           <td>{{ i.swimming_skills | default:"" | yesno:"Есть,Нет" }}</td>
           <td>{{ i.school_progress | default:""  }}</td>
           <td>{{ i.sport_desire | default:"" | yesno:"Есть,Нет" }}</td>
-          <td>{{ i.coach | default:"" }}</td>
-          <td>{{ i.parent | default:"" }}</td>
           <td>{{ i.sports_facility | default:"" }}</td>
           <td>{{ i.sport_type | default:"" }}</td>
         </tr>

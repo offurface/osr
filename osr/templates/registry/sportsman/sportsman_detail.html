@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Информация о спортсмене{% endblock title %}
 
 {% block bar-left %}
@@ -16,13 +16,20 @@
 
 {% block content %}
 <main>
-  <div class="form-wrap">
-    <div class="wrap-one">
-      <div class="container">
+  <div class="container">
 
-      <div class="row" style="margin-bottom: 2rem;">
-        <div class="col-md-12">
+    <div class="wrap-one">
+
+
+      <div class="row justify-content-between" style="margin-bottom: 2rem;">
+        <div class="col-md-4">
+          <div class="sportsman__img">
+            <img src="{% static 'images/registry/gender_m.jpg' %}" alt="">
+          </div>
+
           <h2 class="model-detail__title">{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
+        </div>
+        <div class="col-md-6">
           <p class="model-detail__field">
             Дата рождения: {{ object.date_of_birth }}
           </p>
@@ -76,7 +83,7 @@
       </div>
 
      </div>
-    </div>
+\
   </div>
 </main>
 {% endblock content %}

@@ -160,7 +160,8 @@ class Sportsman(models.Model):
 
     def __str__(self):
         return "%s %s %s" % (self.surname, self.name, self.patronymic)
-
+    def all_name(self):
+        return "%s %s. %s." % (self.surname, self.name[0], self.patronymic[0])
     def get_absolute_url(self, *args, **kwargs):
         return reverse('sportsman-detail', kwargs={'pk': self.pk})
 
