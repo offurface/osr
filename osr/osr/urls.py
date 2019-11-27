@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('registry/', include('apps.registry.urls'), name="registry"),
-    path('auth/', include('apps.account.urls'), name="auth"),
+    path('auth/', include('apps.account.urls')),
     path('', views.LandingView.as_view(), name="index"),
 ]
 
