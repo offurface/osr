@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout
 class LoginFormView(FormView):
     form_class = AuthenticationForm
     template_name = "account/login.html"
-    success_url = "registry/"
+    success_url = "/registry/"
 
     def form_valid(self, form):
         self.user = form.get_user()

@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('registry/', include('apps.registry.urls'), name="registry"),
     path('auth/', include('apps.account.urls'), name="auth"),
-    #path('', include(), name="index"),
+    path('', views.LandingView.as_view(), name="index"),
 ]
 
 urlpatterns += static(
