@@ -24,6 +24,8 @@ body
       border-color: red
     &:required:valid
       border-color: green
+.mh100vh
+  min-height: 100vh
 .mb-1
   margin-bottom: 3rem
 .mb-2
@@ -98,6 +100,8 @@ a.icon
     &:hover
       color: lighten($info, 10%)!important
 
+
+
 .wrap-one
   box-shadow: 0 0 30px rgba(0, 0, 0, .3)
   background-color: white
@@ -108,6 +112,7 @@ a.icon
   padding: 5rem 3rem
   width: 70%
 
+@import "components/auth.sass"
 @import "components/left-menu.sass"
 @import "components/forms.sass"
 @import "components/tables.sass"

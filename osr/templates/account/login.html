@@ -4,51 +4,68 @@
 
 {% block content %}
 
-<div class="center-wrap login-wrap">
 
-  {% if user.is_authenticated %}
-  <div class="wrap-one">
-    <div class="text-align-center">
-      <h1>
-        {{ user.last_name }} {{ user.first_name }} <br>
-        успешно авторизированы.<br>
-        <a href="{% url 'registry' %}">Перейти к реестру</a><br>
-        <a href="{% url 'logout' %}">Завершить сессию</a>
-      </h1>
+<div class="container" ыен>
+  <div class="row mh100vh justify-content-center align-items-center">
+
+    {% if user.is_authenticated %}
+
+    <div class="col-md-8">
+
+      <div class="auth-wrap">
+        <h1 class="auth-wrap__title">
+          {{ user.last_name }} {{ user.first_name }}, <br>
+          вы успешно авторизированы.<br>
+          <a href="{% url 'registry' %}">Перейти к реестру</a><br>
+          <a href="{% url 'logout' %}">Завершить сессию</a>
+        </h1>
+        {% if user.groups %}
+        <h1>Пользователь состоит в группе:</h1>
+
+        {% for g in user.groups.all %}
+        <ul>
+          {{ g }}
+        </ul>
+        {% endfor %}
+      {% endif %}
+      </div>
     </div>
+
+    {% else %}
+
+    <div class="col-md-5">
+      <div class="auth-wrap">
+        <form class="form-model" action="" method="POST">
+          {% csrf_token %}
+          {% load widget_tweaks %}
+
+          <div class="auth-wrap__title">
+            <h1>Форма Авторизации</h1>
+          </div>
+
+          <div class="auth-wrap__field-wrap">
+            <label class="auth-wrap__label" for="id_username">
+              Логин:
+            </label>
+            {{ form.username|add_class:"auth-wrap__field" }}
+          </div>
+
+          <div class="auth-wrap__field-wrap">
+            <label class="auth-wrap__label" for="id_username">
+              Пароль:
+            </label>
+            {{ form.password|add_class:"auth-wrap__field" }}
+          </div>
+
+          <div class="auth-wrap__btns">
+            <input class="btn btn-second" type="submit" value="Войти">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% endif %}
   </div>
-  {% else %}
-  <div class="wrap-one">
-    <form class="form-model" action="" method="POST">
-
-      {% csrf_token %}
-      {% load widget_tweaks %}
-
-      <div class="form-model__title">
-        <h1>Форма Авторизации</h1>
-      </div>
-
-      <div class="form-model__field-wrap">
-        <label class="form-model__label" for="id_username">
-          Логин:
-        </label>
-        {{ form.username|add_class:"form-model__field" }}
-      </div>
-
-      <div class="form-model__field-wrap">
-        <label class="form-model__label" for="id_password">
-          Пароль:
-        </label>
-        {{ form.password|add_class:"form-model__field" }}
-      </div>
-
-      <div class="form-model__btn-box">
-        <input class="btn btn-second" type="submit" value="Войти">
-      </div>
-    </form>
-  </div>
-
-  {% endif %}
 </div>
 
 
