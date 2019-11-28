@@ -53,9 +53,22 @@
         <tr class="col-md-7">
           <th>
             <div class="table__icon-wrap">
+              <!--
               <a href="{{ i.pk }}/delete/" class="icon__delete"><i class="fas fa-trash-alt"></i></a>
-              <a href="{{ i.pk }}/update/" class="icon__update"><i class="fas fa-pencil-alt"></i></a>
+
               <a href="{{ i.pk }}/" class="icon__detail"><i class="fas fa-info-circle"></i></a>
+              <a href="{{ i.pk }}/update/" class="icon__update"><i class="fas fa-pencil-alt"></i></a>
+            -->
+              <a href="{{ i.pk }}/delete/" title="">
+                <img src="../../../static/images/svg/delete-24px.svg" alt="">
+              </a>
+              <a href="{{ i.pk }}/" title="">
+                <img src="../../../static/images/svg/description-24px.svg" alt="">
+              </a>
+              <a href="{{ i.pk }}/update/" title="">
+                <img src="../../../static/images/svg/create-24px.svg" alt="">
+              </a>
+
             </div>
           </th>
           <td>{{ i.surname | default:""}} {{ i.name | default:""}} {{ i.patronymic | default:""}}</td>

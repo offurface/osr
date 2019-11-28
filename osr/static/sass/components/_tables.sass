@@ -1,41 +1,53 @@
 .table-wrap
   width: 100%
-  padding: 3rem 0
   height: calc(100vh - 5.7rem)
   overflow: scroll
   glyph-orientation-vertical: auto
-  background-color: $light-accent
-.table
-  box-shadow: 0 0 10px gray
-  margin: 0 1rem
 
+.table
+  width: 100%
+  box-shadow: 0 0 1px gray
   font-size: 1.4rem
   border-collapse: collapse
-  border-radius: 5px 5px 0 0
   overflow: hidden
   thead
     font-size: 1.8rem
     tr
-      background-color: $table-head
-      color: white
-      font-weight: bold
+      background-color: #fff
+      color: #111
+      font-weight: normal
       text-align: left
       font-size: 1.4rem
+      height: 30px
   th, td
-    padding: 1.2rem 1.5rem
+    padding: 1.5rem 1.5rem
     white-space: nowrap
   tbody
     tr
       background-color: white
       border-bottom: 1px solid #dddddd
+      &:hover
+        background-color: #d4d4d4
+        transition: .2s
       &:nth-of-type(even)
-        background-color: #f3f3f3
+        background-color: #efefef
+      &:hover
+        background-color: #d4d4d4
+        transition: .2s
       &:last-of-type
         border-bottom: 2px solid $table-head
   &__icon-wrap
     display: flex
     font-size: 2rem
     flex-direction: row-reverse
+    img
+      padding: 0.6rem 0.6rem
     a
-      margin: 0 .5rem
-
+      padding: 0.6rem 0.6rem
+      display: block
+      border-radius: 50%
+      transition: .3s
+      &:hover
+        background-color: #ccc
+        border-radius: 50%
+        transition: .2s
