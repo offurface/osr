@@ -21,66 +21,91 @@
     <div class="sportsman__wrap">
 
 
-      <div class="row" style="margin-bottom: 2rem;">
-        <div class="col-md-6">
-          <div class="sportsman__img">
-            {% if object.gender == "М" %}
-              <img src="{% static 'images/registry/gender_m.png' %}" alt="">
-            {% else %}
-              <img src="{% static 'images/registry/gender_f.png' %}" alt="">
-            {% endif %}
-          </div>
+      <div class="row">
 
-          <h2 class="sportsman__name">{{ object.surname }} {{ object.name }} {{ object.patronymic }}</h2>
-        </div>
         <div class="col-md-6">
-          <p class="model-detail__field">
-            Дата рождения: {{ object.date_of_birth }}
-          </p>
-          <p class="model-detail__field">
-            Спортивное учереждение: {{ object.sports_facility }}
-          </p>
-          <p class="model-detail__field">
-            Тренер: {{ object.coach }}
-          </p>
-          <p class="model-detail__field">
-            Вид спорта: {{ object.sport_type }}
-          </p>
+          <div class="sportsman__wrap-avatar">
+
+            <div class="sportsman__img">
+              {% if object.gender == "М" %}
+                <img src="{% static 'images/registry/gender_m.png' %}" alt="">
+              {% else %}
+                <img src="{% static 'images/registry/gender_f.png' %}" alt="">
+              {% endif %}
+            </div>
+            <h2 class="sportsman__name">
+              {{ object.surname }} {{ object.name }} {{ object.patronymic }}
+            </h2>
+            <p class="sportsman__field">
+              {{ object.date_of_birth }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="sportsman__wrap-info">
+
+            <p class="sportsman__field">
+              <span>Тренер:</span> {{ object.coach }}
+            </p>
+            <p class="sportsman__field">
+              <span>Спортивное учереждение:</span> {{ object.sports_facility }}
+            </p>
+            <p class="sportsman__field">
+              <span>Вид спорта:</span> {{ object.sport_type }}
+            </p>
+            <p class="sportsman__field">
+              <span>Разряд:</span> {{ object.rank | default:""  }}
+            </p>
+            <p class="sportsman__field">
+              <span>Умение плавать:</span> {{ object.swimming_skills | default:"" | yesno:"Есть,Нет" }}
+            </p>
+            <p class="sportsman__field">
+              <span>Личный телефон:</span> {{ object.telephone | default:"" }}
+            </p>
+
+          </div>
         </div>
       </div>
 
       <div class="row" style="margin-bottom: 1rem;">
         <div class="col-md-6">
-          <h2 class="model-detail__title">Предварительный отбор:</h2>
-          <a class="model-detail__add" href="primary/">Добавить обследование <i class="fas fa-plus"></i></a>
-          <ul class="model-detail__ul">
-          {% for i in primary %}
-            <li>
-              <a href="#">
-                <h3>{{ i.stage }} - {{ i.date }}</h3>
-              </a>
-            </li>
-          {% empty %}
-            <h3>Нет обследований.</h3>
-          {% endfor %}
-          </ul>
+          <div class="sportsman__wrap-list">
+            <h2 class="model-detail__title">Предварительный отбор:</h2>
+            <a class="model-detail__add" href="primary/">Добавить обследование <i class="fas fa-plus"></i></a>
+            <ul class="model-detail__ul">
+            {% for i in primary %}
+              <li>
+                <a href="#">
+                  <h3>{{ i.stage }} - {{ i.date }}</h3>
+                </a>
+              </li>
+            {% empty %}
+              <h3>Нет обследований.</h3>
+            {% endfor %}
+            </ul>
+          </div>
+
 
         </div>
 
         <div class="col-md-6">
-          <h2 class="model-detail__title">Углубленные медецинские обследования:</h2>
-          <a class="model-detail__add" href="umo/">Добавить обследование <i class="fas fa-plus"></i></a>
-          <ul class="model-detail__ul">
-          {% for i in umo %}
-          <li>
-            <a href="#">
-              <h3>{{ i.stage }} - {{ i.date }}</h3>
-            </a>
-          </li>
-          {% empty %}
-            <h3>Нет обследований.</h3>
-          {% endfor %}
-        </ul>
+          <div class="sportsman__wrap-list">
+            <h2 class="model-detail__title">Углубленные медецинские обследования:</h2>
+            <a class="model-detail__add" href="umo/">Добавить обследование <i class="fas fa-plus"></i></a>
+            <ul class="model-detail__ul">
+              {% for i in umo %}
+              <li>
+                <a href="#">
+                  <h3>{{ i.stage }} - {{ i.date }}</h3>
+                </a>
+              </li>
+              {% empty %}
+                <h3>Нет обследований.</h3>
+              {% endfor %}
+            </ul>
+          </div>
+
         </div>
       </div>
 
