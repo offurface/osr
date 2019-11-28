@@ -63,7 +63,6 @@
             <p class="sportsman__field">
               <span>Личный телефон:</span> {{ object.telephone | default:"" }}
             </p>
-
           </div>
         </div>
       </div>
@@ -71,14 +70,15 @@
       <div class="row" style="margin-bottom: 1rem;">
         <div class="col-md-6">
           <div class="sportsman__wrap-list">
-            <h2 class="model-detail__title">Предварительный отбор:</h2>
+            <h2 class="sportsman__field"><span>Предварительный отбор:</span></h2>
             <a class="model-detail__add" href="primary/">Добавить обследование <i class="fas fa-plus"></i></a>
             <ul class="model-detail__ul">
             {% for i in primary %}
-              <li>
-                <a href="#">
+              <li >
+                <a href="#" class="sportsman__field">
                   <h3>{{ i.stage }} - {{ i.date }}</h3>
                 </a>
+
               </li>
             {% empty %}
               <h3>Нет обследований.</h3>
@@ -91,13 +91,13 @@
 
         <div class="col-md-6">
           <div class="sportsman__wrap-list">
-            <h2 class="model-detail__title">Углубленные медецинские обследования:</h2>
+            <h2 class="sportsman__field"><span>Углубленные медецинские обследования:</span></h2>
             <a class="model-detail__add" href="umo/">Добавить обследование <i class="fas fa-plus"></i></a>
             <ul class="model-detail__ul">
               {% for i in umo %}
-              <li>
+              <li class="sportsman__field">
                 <a href="#">
-                  <h3>{{ i.stage }} - {{ i.date }}</h3>
+                  <h3 >{{ i.stage }} - {{ i.date }}</h3>
                 </a>
               </li>
               {% empty %}

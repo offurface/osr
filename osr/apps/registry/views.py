@@ -32,6 +32,12 @@ from django.views.generic import (
 class RegitryTemplateView(TemplateView):
     template_name = "registry/registry.html"
 
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context['sporttype'] = Sport_type.objects.all()
+        return context
 """
 Вид спорта
 """
@@ -182,8 +188,16 @@ class ParentDeleteView(DeleteView):
 @method_decorator(login_required, name='dispatch')
 class SportsmanListView(ListView):
     template_name = "registry/sportsman/sportsman_list.html"
-    queryset = Sportsman.objects.all()
+    #queryset = Sportsman.objects.all()
+    model = Sportsman
     paginate_by = 20
+
+    def get_queryset(self):
+        type_pk = self.request.GET.get('type-pk')
+        new_queryset = Sportsman.objects.filter(
+            sport_type_id=type_pk,
+        )
+        return new_queryset
 
 @method_decorator(login_required, name='dispatch')
 class SportsmanCreateView(CreateView):
@@ -237,12 +251,6 @@ class SportsmanDeleteView(DeleteView):
 """
 Первичное обследование
 """
-# @method_decorator(login_required, name='dispatch')
-# class SportsmanListView(ListView):
-#     template_name = "registry/sportsman/sportsman_list.html"
-#     queryset = Sportsman.objects.all()
-#     paginate_by = 7
-
 @method_decorator(login_required, name='dispatch')
 class PrimaryCreateView(CreateView):
     template_name = "registry/primary/primary_create.html"
