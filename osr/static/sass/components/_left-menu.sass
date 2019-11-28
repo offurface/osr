@@ -1,7 +1,11 @@
 .left-menu
   background-color: $left-menu-bgc
   box-shadow: inset 0 0 20px rgba(0,0,0, 0.2)
-
+  &__title
+    color: lighten($left-menu-bgc, 40%)
+    font-size: 1.4rem
+    padding-left: 2rem
+    margin-top: 1rem
   .user
     width: 100%
     text-align: center
@@ -26,6 +30,8 @@
   ul
     padding: 0
     margin: 0
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1)
+    background-color: lighten($left-menu-bgc, 3%)
     li
       a
         transition: .2s
@@ -34,6 +40,12 @@
         font-size: 1.8rem
         color: white
         width: 100%
+        position: relative
+        svg
+          display: block
+          position: absolute
+          right: 4%
+          top: 26%
         &:hover
           transform: scale(1.05)
           text-decoration: none

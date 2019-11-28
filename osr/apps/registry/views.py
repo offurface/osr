@@ -188,16 +188,19 @@ class ParentDeleteView(DeleteView):
 @method_decorator(login_required, name='dispatch')
 class SportsmanListView(ListView):
     template_name = "registry/sportsman/sportsman_list.html"
-    #queryset = Sportsman.objects.all()
     model = Sportsman
     paginate_by = 20
 
     def get_queryset(self):
         type_pk = self.request.GET.get('type-pk')
-        new_queryset = Sportsman.objects.filter(
-            sport_type_id=type_pk,
-        )
-        return new_queryset
+        print(type_pk)
+        if type_pk:
+            new_queryset = Sportsman.objects.filter(
+                sport_type_id=type_pk,
+            )
+            return new_queryset
+        else:
+            return Sportsman.objects.all()
 
 @method_decorator(login_required, name='dispatch')
 class SportsmanCreateView(CreateView):

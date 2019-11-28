@@ -56,21 +56,26 @@
 
     </div>
 
+    <h3 class="left-menu__title">Навигация</h3>
     <ul>
       <li>
-        <a href="{% url 'registry' %}"><i class="fas fa-caret-right"></i> Главная</a>
+        <a href="{% url 'registry' %}">Главная<i class="fas fa-caret-right"></i></a>
+      </li>
+    </ul>
+
+    <h3 class="left-menu__title">Справочники</h3>
+    <ul>
+      <li>
+        <a href="{% url 'sport-type-list' %}">Виды спорта<i class="fas fa-caret-right"></i></a>
       </li>
       <li>
-        <a href="{% url 'sport-type-list' %}"><i class="fas fa-caret-right"></i> Виды спорта</a>
+        <a href="{% url 'coach-list' %}">Тренеры<i class="fas fa-caret-right"></i></a>
       </li>
       <li>
-        <a href="{% url 'coach-list' %}"><i class="fas fa-caret-right"></i> Тренеры</a>
+        <a href="{% url 'parent-list' %}">Представители<i class="fas fa-caret-right"></i></a>
       </li>
       <li>
-        <a href="{% url 'parent-list' %}"><i class="fas fa-caret-right"></i> Представители</a>
-      </li>
-      <li>
-        <a href="{% url 'sportsman-list' %}"><i class="fas fa-caret-right"></i> Спортсмены</a>
+        <a href="{% url 'sportsman-list' %}">Спортсмены<i class="fas fa-caret-right"></i></a>
       </li>
     </ul>
 
