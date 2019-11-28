@@ -38,7 +38,14 @@
     <table class="table">
       <thead>
         <th class="table__create">
-          <a href="{% url 'sportsman-create' %}" class="icon__create-table">Создать <i class="fas fa-plus"></i></a>
+          <!--
+          <a href="{% url 'sportsman-create' %}" class="icon__create-table"><i class="fas fa-plus"></i></a>
+        -->
+        <div class="table__icon-wrap">
+          <a href="{% url 'sportsman-create' %}" title="">
+            <img src="../../../static/images/svg/add_box-24px.svg" alt="">
+          </a>
+        </div>
         </th>
         <th>ФИО</th>
         <th>Дата рождения</th>

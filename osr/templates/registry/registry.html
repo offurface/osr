@@ -8,7 +8,7 @@
       <div class="row mh100vh justify-content-center align-items-center">
         <div class="col-md-5">
           <form class="search" action={% url 'sportsman-list' %}>
-            <select name="type-pk">
+            <select name="type">
               {% for type in sporttype %}
                 <option value="{{ type.pk }}">
                   {{ type }}
