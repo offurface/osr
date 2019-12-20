@@ -4,6 +4,8 @@ $(document).ready(function() {
 
   $( '.hamburger' ).on( 'click', function ( event ) {
 
+
+
     if($(this).hasClass('is-active'))
 		{
 			$(this).removeClass('is-active');
@@ -17,7 +19,7 @@ $(document).ready(function() {
     controller.toggle( 'left-menu' );
   });
 
-
+  $('.select2').select2();
 
   $('.full-screen-tabele').click(function(e){
     $('.table').fullScreen();
