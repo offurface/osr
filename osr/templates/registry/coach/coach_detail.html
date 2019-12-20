@@ -8,8 +8,26 @@
     <div class="wrap-one">
       <div class="container">
         <div class="row justify-content-around">
-          <div class="col-md-7">
-            <h1>{{ object.name }}</h1>
+          <div class="col-md-20">
+            <!--<h1>{{ object.name }}</h1>-->
+            <div class="sportsman__wrap-info">
+
+            <p class="sportsman__field">
+              <span>ФИО:</span>
+              {{ object.surname }} {{ object.name }} {{ object.patronymic }}
+            </p>
+
+            <p class="sportsman__field">
+              <span>Личный телефон:</span> {{ object.telephone | default:"Телефон отсутствует" }}
+            </p>
+
+            <p class="sportsman__field">
+              <span>Вид спорта:</span> {{ object.sport_type }}
+            </p>
+
+
+          </div>
+        </div>
           </div>
         </div>
       </div>

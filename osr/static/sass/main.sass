@@ -33,7 +33,6 @@ body
 .mb-3
   margin-bottom: 3rem
 
-.search
 
 
 main
@@ -68,6 +67,8 @@ main
       color: white
       text-decoration: none
   &-second
+    background-color: #47648b
+    margin: 16px auto
     background-color: $info
     &:hover
       background-color: lighten($info, 10%)
@@ -119,12 +120,26 @@ a.icon
 
 .main-select
   .select2-container
+
     .select2-selection--single
       .select2-selection__rendered
         font-size: 3rem
 .select2
-  width: 100%
 
+  width: 100%
+  font-size: 15px
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]
+  font-size: 15px
+
+
+.select2-container--default .select2-search--dropdown .select2-search__field
+  font-size: 15px
+
+.btn-second
+
+
+.search
 
 
 
