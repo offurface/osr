@@ -42,7 +42,7 @@
           <a href="{% url 'sportsman-create' %}" class="icon__create-table"><i class="fas fa-plus"></i></a>
         -->
         <div class="table__icon-wrap">
-          <a href="{% url 'sportsman-create' %}" title="">
+          <a href="{% url 'sportsman-create' %}" title="Создать элемент">
             <img src="../../../static/images/svg/add_box-24px.svg" alt="">
           </a>
         </div>
@@ -60,13 +60,13 @@
           <tr class="col-md-7">
             <th>
               <div class="table__icon-wrap">
-                <a href="{{ i.pk }}/delete/" title="">
+                <a href="{{ i.pk }}/delete/" title="Удалить элемент">
                   <img src="../../../static/images/svg/delete-24px.svg" alt="">
                 </a>
-                <a href="{{ i.pk }}/" title="">
+                <a href="{{ i.pk }}/" title="Информация">
                   <img src="../../../static/images/svg/description-24px.svg" alt="">
                 </a>
-                <a href="{{ i.pk }}/update/" title="">
+                <a href="{{ i.pk }}/update/" title="Редактировать элемент">
                   <img src="../../../static/images/svg/create-24px.svg" alt="">
                 </a>
               </div>

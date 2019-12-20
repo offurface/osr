@@ -11,9 +11,16 @@
         <table class="table">
           <thead>
             <th>
+              <!--
               <a href="{% url 'parent-create' %}" class="icon__create"><i class="fas fa-plus"></i></a>
-            </th>
-            <th>Фамилия</th>
+            -->
+            <div class="table__icon-wrap">
+              <a href="{% url 'parent-create' %}"title="Создать элемент">
+                <img src="../../../static/images/svg/add_box-24px.svg" alt="">
+              </a>
+            </div>
+          </th>
+          <th>Фамилия</th>
             <th>Имя</th>
             <th>Отчество</th>
             <th>Статус представителя</th>
@@ -24,9 +31,22 @@
             {% for i in object_list %}
             <tr class="col-md-7">
               <th>
+                <!--
                 <a href="{{ i.pk }}/delete/" class="table__icon icon__delete"><i class="fas fa-trash-alt"></i></a>
                 <a href="{{ i.pk }}/update/" class="table__icon icon__update"><i class="fas fa-pencil-alt"></i></a>
                 <a href="{{ i.pk }}/" class="table__icon icon__detail"><i class="fas fa-info-circle"></i></a>
+              -->
+              <div class="table__icon-wrap">
+                <a href="{{ i.pk }}/delete/" title="Удалить элемент">
+                  <img src="../../../static/images/svg/delete-24px.svg" alt="">
+                </a>
+                <a href="{{ i.pk }}/" title="Информация">
+                  <img src="../../../static/images/svg/description-24px.svg" alt="">
+                </a>
+                <a href="{{ i.pk }}/update/" title="Редактировать элемент">
+                  <img src="../../../static/images/svg/create-24px.svg" alt="">
+                </a>
+              </div>
               </th>
               <td>{{ i.surname }}</td>
               <td>{{ i.name }}</td>
