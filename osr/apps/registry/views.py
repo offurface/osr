@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from decimal import Decimal as D
 from django.db.models import Max
 
 from .models import (
@@ -33,32 +33,58 @@ from django.views.generic import (
     TemplateView,
 )
 
+def is_none_type(var):
+    if(var != None):
+        return var
+    else:
+        return 0
 
 @method_decorator(login_required, name='dispatch')
 class RatingListView(View):
     template_name = "registry/rating.html"
 
     def get(self, request, *args, **kwargs):
-        length__max = Survey.objects.aggregate(Max('length'))['length__max']
-        weight__max = Survey.objects.aggregate(Max('weight'))['weight__max']
-        #foot_length__max = Survey.objects.aggregate(Max('foot_length'))['foot_length__max']
+        result_list_dont_sort = []
+        result_list = []
+
         values = {
-            'length__max': length__max,
-            'weight__max': weight__max,
-            #'foot_length__max': foot_length__max,
+            'length__max': Primary.objects.aggregate(Max('length'))['length__max'],
+            'weight__max': Primary.objects.aggregate(Max('weight'))['weight__max'],
+            'spirometry_yellow__max': D(Primary.objects.aggregate(Max('spirometry_yellow'))['spirometry_yellow__max']),
+            'speed__max': D(Primary.objects.aggregate(Max('speed'))['speed__max']),
+            'stamina__max': D(Primary.objects.aggregate(Max('stamina'))['stamina__max']),
+
+            #'foot_length__max': Survey.objects.aggregate(Max('foot_length'))['foot_length__max'],
         }
 
-        #items = Survey.objects.order_by('sportsman_id','-date' ).values('sportsman_id','date','length','weight')
-        items = Survey.objects.order_by('sportsman_id','-date' ).values('sportsman_id','date')
-        for i in items:
-            print(i)
-        #del item[0]
-        for i in items:
-            print(i)
+        items = Primary.objects.order_by('sportsman_id','-date' ).values(
+            'sportsman_id','length','weight','spirometry_yellow', 'speed', 'stamina',
+            #'',
+            )
 
+        for i in items:
+            rating = (is_none_type(i['length'])/values['length__max']) * D(1.2) + (is_none_type(i['weight'])/values['weight__max']) * D(1) + D((is_none_type(i['spirometry_yellow']))/values['spirometry_yellow__max']) * D(1) + D((is_none_type(i['speed']))/values['speed__max']) * D(1)+ D((is_none_type(i['stamina']))/values['stamina__max']) * D(1.2)
+
+            s = Sportsman.objects.get(pk=i['sportsman_id'])
+
+            result_list_dont_sort.append({
+                'sportsman_id': i['sportsman_id'],
+                'rating': round(rating,6),
+                'sportsman': i['sportsman_id'],
+                'name': s.name,
+                'surname': s.surname,
+                'patronymic': s.patronymic,
+
+            })
+
+
+        result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
+
+        for i in result_list:
+            print(i['rating'])
 
         return render(request, self.template_name, {
-            'length__max': Survey.objects.values()
+            'items': result_list,
 
         })
 
