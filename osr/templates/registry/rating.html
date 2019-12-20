@@ -16,14 +16,106 @@
 
 {% block content %}
 <main>
+  <!--
   <div class="form-wrap">
     <div class="wrap-one">
       <div class="container">
           {% for i in items %}
-          <p>{{i.sportsman_id}} {{ i.rating }} {{ i.name }} {{ i.surname }} {{ i.patronymic }}</p>
+          <p>{{forloop.counter}}. {{i.sportsman_id}} {{ i.rating }} {{ i.name }} {{ i.surname }} {{ i.patronymic }}</p>
           {% endfor %}
+        </div>
       </div>
     </div>
+  -->
+
+    <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <th class="table__create">
+        </th>
+        <th>№</th>
+        <th>Id</th>
+        <th>Рейтинг</th>
+        <th>ФИО</th>
+      </thead>
+      <tbody>
+        {% for i in items %}
+
+        {% if forloop.counter == 1 %}
+        <tr class="col-md-7 gold">
+          <th>
+              <div class="table__icon-wrap">
+                <a href="/registry/sportsman/{{i.sportsman_id}}" title="">
+                  <img src="../../../static/images/svg/person-24px.svg" alt="">
+                </a>
+                </a>
+              </div>
+            </th>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.sportsman_id}}</td>
+
+          <td>{{ i.rating }}</td>
+
+          <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+        </tr>
+        {% elif forloop.counter == 2 %}
+
+        <tr class="col-md-7 silver">
+          <th>
+              <div class="table__icon-wrap">
+                <a href="/registry/sportsman/{{i.sportsman_id}}" title="">
+                  <img src="../../../static/images/svg/person-24px.svg" alt="">
+                </a>
+                </a>
+              </div>
+            </th>
+          </th>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.sportsman_id}}</td>
+
+          <td>{{ i.rating }}</td>
+
+          <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+          </tr>
+          {% elif forloop.counter == 3 %}
+          <tr class="col-md-7 copper">
+            <th>
+              <div class="table__icon-wrap">
+                <a href="/registry/sportsman/{{i.sportsman_id}}" title="">
+                  <img src="../../../static/images/svg/person-24px.svg" alt="">
+                </a>
+                </a>
+              </div>
+            </th>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.sportsman_id}}</td>
+
+            <td>{{ i.rating }}</td>
+
+            <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+          </tr>
+          {% else %}
+          <tr class="col-md-7">
+            <th>
+              <div class="table__icon-wrap">
+                <a href="/registry/sportsman/{{i.sportsman_id}}" title="">
+                  <img src="../../../static/images/svg/person-24px.svg" alt="">
+                </a>
+                </a>
+              </div>
+            </th>
+
+            <td>{{forloop.counter}}</td>
+            <td>{{i.sportsman_id}}</td>
+
+            <td>{{ i.rating }}</td>
+
+            <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+          </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </main>
 {% endblock content %}
