@@ -80,8 +80,8 @@ class RatingListView(View):
 
         result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
 
-        for i in result_list:
-            print(i['rating'])
+        # for i in result_list:
+        #     print(i['rating'])
 
         return render(request, self.template_name, {
             'items': result_list,
