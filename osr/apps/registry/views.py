@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+from django.db.models import Max
+
 from .models import (
     Sport_type,
     Coach,
@@ -11,6 +13,7 @@ from .models import (
     Sportsman,
     Primary,
     UMO,
+    Survey,
 )
 from .forms import (
     SportTypeForm,
@@ -21,6 +24,7 @@ from .forms import (
     UMOForm,
 )
 from django.views.generic import (
+    View,
     ListView,
     DetailView,
     CreateView,
@@ -28,6 +32,37 @@ from django.views.generic import (
     DeleteView,
     TemplateView,
 )
+
+
+@method_decorator(login_required, name='dispatch')
+class RatingListView(View):
+    template_name = "registry/rating.html"
+
+    def get(self, request, *args, **kwargs):
+        length__max = Survey.objects.aggregate(Max('length'))['length__max']
+        weight__max = Survey.objects.aggregate(Max('weight'))['weight__max']
+        #foot_length__max = Survey.objects.aggregate(Max('foot_length'))['foot_length__max']
+        values = {
+            'length__max': length__max,
+            'weight__max': weight__max,
+            #'foot_length__max': foot_length__max,
+        }
+
+        #items = Survey.objects.order_by('sportsman_id','-date' ).values('sportsman_id','date','length','weight')
+        items = Survey.objects.order_by('sportsman_id','-date' ).values('sportsman_id','date')
+        for i in items:
+            print(i)
+        #del item[0]
+        for i in items:
+            print(i)
+
+
+        return render(request, self.template_name, {
+            'length__max': Survey.objects.values()
+
+        })
+
+
 @method_decorator(login_required, name='dispatch')
 class RegitryTemplateView(TemplateView):
     template_name = "registry/registry.html"

@@ -4,6 +4,10 @@ from . import views
 urlpatterns = [
     path('', views.RegitryTemplateView.as_view(), name='registry'),
 
+    path('rating/', views.RatingListView.as_view(), name='rating'),
+
+
+
     path('sport-type/', include([
         path('', views.SportTypeListView.as_view(), name='sport-type-list'),
         path('<int:pk>/', views.SportTypeDetailView.as_view(), name='sport-type-detail'),

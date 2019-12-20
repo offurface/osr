@@ -283,6 +283,10 @@ class Survey(models.Model):
     def __str__(self):
         return "%s %s" % (self.date, self.sportsman)
 
+    def raiting_param(self, values):
+        result = (self.weight / values['weight__max']) + (self.length / values['length__max'])
+        return result
+
     class Meta:
         ordering = ("date",)
         verbose_name = "Обследование"
