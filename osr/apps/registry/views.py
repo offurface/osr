@@ -254,7 +254,6 @@ class SportsmanListView(ListView):
 
     def get_queryset(self):
         type_pk = self.request.GET.get('type-pk')
-        print(type_pk)
         if type_pk:
             new_queryset = Sportsman.objects.filter(
                 sport_type_id=type_pk,
