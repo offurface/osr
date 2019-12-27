@@ -33,9 +33,8 @@
       <thead>
         <th class="table__create">
         </th>
-        <th>№</th>
-        <th>Id</th>
-        <th>Рейтинг</th>
+        <th>id</th>
+        <th>Динамика</th>
         <th>ФИО</th>
       </thead>
       <tbody>
@@ -56,7 +55,7 @@
 
           <td><strong>{{ i.rating }}</strong></td>
 
-          <td>{{ i.surname }} {{ i.name }} {{ i.patronymic }}</td>
+          <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
         </tr>
         {% elif forloop.counter == 2 %}
 

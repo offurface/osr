@@ -39,6 +39,63 @@ def is_none_type(var):
     else:
         return 0
 
+
+@method_decorator(login_required, name='dispatch')
+class RatingDynamicListView(View):
+    template_name = "registry/dynamic.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {
+            'items': [],
+            'title': 'Динамика',
+        })
+
+
+@method_decorator(login_required, name='dispatch')
+class RatingUMOListView(View):
+    template_name = "registry/rating.html"
+
+    def get(self, request, *args, **kwargs):
+        result_list_dont_sort = []
+        result_list = []
+
+        values = {
+            'length__max': UMO.objects.aggregate(Max('length'))['length__max'],
+            'weight__max': UMO.objects.aggregate(Max('weight'))['weight__max'],
+            'ultrasound_heart__max': D(is_none_type(UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max']))
+            #'ultrasound_heart__max': UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max'],
+        }
+
+        items = UMO.objects.order_by('sportsman_id','-date' ).values(
+            'sportsman_id','length','weight', 'ultrasound_heart',
+            #'',
+            )
+
+        for i in items:
+            rating = (is_none_type(i['length'])/values['length__max']) * D(1.2) + (is_none_type(i['weight'])/values['weight__max']) * D(1) + D((is_none_type(i['ultrasound_heart']))/values['ultrasound_heart__max'])*D(1.5)
+
+            s = Sportsman.objects.get(pk=i['sportsman_id'])
+
+            result_list_dont_sort.append({
+                'sportsman_id': i['sportsman_id'],
+                'rating': round(rating,6),
+                'sportsman': i['sportsman_id'],
+                'name': s.name,
+                'surname': s.surname,
+                'patronymic': s.patronymic,
+
+            })
+
+
+        result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
+
+
+        return render(request, self.template_name, {
+            'items': result_list,
+            'title': 'Рейтинг углублённых медицинских обследований',
+        })
+
+
 @method_decorator(login_required, name='dispatch')
 class RatingListView(View):
     template_name = "registry/rating.html"
@@ -80,12 +137,10 @@ class RatingListView(View):
 
         result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
 
-        # for i in result_list:
-        #     print(i['rating'])
 
         return render(request, self.template_name, {
             'items': result_list,
-
+            'title': 'Рейтинг первичных обследований',
         })
 
 

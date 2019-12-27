@@ -5,6 +5,10 @@ urlpatterns = [
     path('', views.RegitryTemplateView.as_view(), name='registry'),
 
     path('rating/', views.RatingListView.as_view(), name='rating'),
+    path('rating-umo/', views.RatingUMOListView.as_view(), name='rating-umo'),
+    path('dynamic/', views.RatingDynamicListView.as_view(), name='dynamic'),
+
+
 
 
 
