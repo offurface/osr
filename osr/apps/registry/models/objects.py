@@ -311,7 +311,7 @@ class Primary(Survey):
     chest_shape = models.CharField(max_length=15, choices=CHEST_SHAPE, blank=True, null=True,
     verbose_name="Форма грудной клетки")#
     back_shape = models.CharField(max_length=20, choices=BACK_SHAPE, blank=True, null=True,
-    verbose_name="Форма спины")#
+    verbose_name="Форма спины")# поля выше перенесены в sportsman
     speed = models.PositiveIntegerField(blank=True, null=True,
     verbose_name="Быстрота")#
     strength = models.PositiveIntegerField( blank=True, null=True,
