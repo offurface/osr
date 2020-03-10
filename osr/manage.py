@@ -1,14 +1,6 @@
 import os
 import sys
 
-# © by w-team
-# Владимир Киселев
-# Саплев Максим
-# Харитонов Игорь
-# Назаренко Денис
-# Мальнев Андрей
-# Незаконное распространение данного программного продукта карается законом РФ
-
 def main():
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'osr.settings')
     try:
