@@ -56,42 +56,42 @@ class RatingUMOListView(View):
     template_name = "registry/rating.html"
 
     def get(self, request, *args, **kwargs):
-        result_list_dont_sort = []
-        result_list = []
+        # result_list_dont_sort = []
+        # result_list = []
 
-        values = {
-            'length__max': UMO.objects.aggregate(Max('length'))['length__max'],
-            'weight__max': UMO.objects.aggregate(Max('weight'))['weight__max'],
-            'ultrasound_heart__max': D(is_none_type(UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max']))
-            #'ultrasound_heart__max': UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max'],
-        }
+        # values = {
+        #     'length__max': UMO.objects.aggregate(Max('length'))['length__max'],
+        #     'weight__max': UMO.objects.aggregate(Max('weight'))['weight__max'],
+        #     'ultrasound_heart__max': D(is_none_type(UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max']))
+        #     #'ultrasound_heart__max': UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max'],
+        # }
 
-        items = UMO.objects.order_by('sportsman_id','-date' ).values(
-            'sportsman_id','length','weight', 'ultrasound_heart',
-            #'',
-            )
+        # items = UMO.objects.order_by('sportsman_id','-date' ).values(
+        #     'sportsman_id','length','weight', 'ultrasound_heart',
+        #     #'',
+        #     )
 
-        for i in items:
-            rating = (is_none_type(i['length'])/values['length__max']) * D(1.2) + (is_none_type(i['weight'])/values['weight__max']) * D(1) + D((is_none_type(i['ultrasound_heart']))/values['ultrasound_heart__max'])*D(1.5)
+        # for i in items:
+        #     rating = (is_none_type(i['length'])/values['length__max']) * D(1.2) + (is_none_type(i['weight'])/values['weight__max']) * D(1) + D((is_none_type(i['ultrasound_heart']))/values['ultrasound_heart__max'])*D(1.5)
 
-            s = Sportsman.objects.get(pk=i['sportsman_id'])
+        #     s = Sportsman.objects.get(pk=i['sportsman_id'])
 
-            result_list_dont_sort.append({
-                'sportsman_id': i['sportsman_id'],
-                'rating': round(rating,6),
-                'sportsman': i['sportsman_id'],
-                'name': s.name,
-                'surname': s.surname,
-                'patronymic': s.patronymic,
+        #     result_list_dont_sort.append({
+        #         'sportsman_id': i['sportsman_id'],
+        #         'rating': round(rating,6),
+        #         'sportsman': i['sportsman_id'],
+        #         'name': s.name,
+        #         'surname': s.surname,
+        #         'patronymic': s.patronymic,
 
-            })
+        #     })
 
 
-        result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
+        # result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
 
 
         return render(request, self.template_name, {
-            'items': result_list,
+            'items': {},#result_list,
             'title': 'Рейтинг углублённых медицинских обследований',
         })
 
@@ -101,45 +101,45 @@ class RatingListView(View):
     template_name = "registry/rating.html"
 
     def get(self, request, *args, **kwargs):
-        result_list_dont_sort = []
-        result_list = []
+        # result_list_dont_sort = []
+        # result_list = []
 
-        values = {
-            'length__max': Primary.objects.aggregate(Max('length'))['length__max'],
-            'weight__max': Primary.objects.aggregate(Max('weight'))['weight__max'],
-            'spirometry_yellow__max': D(Primary.objects.aggregate(Max('spirometry_yellow'))['spirometry_yellow__max']),
-            'speed__max': D(Primary.objects.aggregate(Max('speed'))['speed__max']),
-            'stamina__max': D(Primary.objects.aggregate(Max('stamina'))['stamina__max']),
+        # values = {
+        #     'length__max': Primary.objects.aggregate(Max('length'))['length__max'],
+        #     'weight__max': Primary.objects.aggregate(Max('weight'))['weight__max'],
+        #     'spirometry_yellow__max': D(Primary.objects.aggregate(Max('spirometry_yellow'))['spirometry_yellow__max']),
+        #     'speed__max': D(Primary.objects.aggregate(Max('speed'))['speed__max']),
+        #     'stamina__max': D(Primary.objects.aggregate(Max('stamina'))['stamina__max']),
 
-            #'foot_length__max': Survey.objects.aggregate(Max('foot_length'))['foot_length__max'],
-        }
+        #     #'foot_length__max': Survey.objects.aggregate(Max('foot_length'))['foot_length__max'],
+        # }
 
-        items = Primary.objects.order_by('sportsman_id','-date' ).values(
-            'sportsman_id','length','weight','spirometry_yellow', 'speed', 'stamina',
-            #'',
-            )
+        # items = Primary.objects.order_by('sportsman_id','-date' ).values(
+        #     'sportsman_id','length','weight','spirometry_yellow', 'speed', 'stamina',
+        #     #'',
+        #     )
 
-        for i in items:
-            rating = (is_none_type(i['length'])/values['length__max']) * D(1.2) + (is_none_type(i['weight'])/values['weight__max']) * D(1) + D((is_none_type(i['spirometry_yellow']))/values['spirometry_yellow__max']) * D(1) + D((is_none_type(i['speed']))/values['speed__max']) * D(1)+ D((is_none_type(i['stamina']))/values['stamina__max']) * D(1.2)
+        # for i in items:
+        #     rating = (is_none_type(i['length'])/values['length__max']) * D(1.2) + (is_none_type(i['weight'])/values['weight__max']) * D(1) + D((is_none_type(i['spirometry_yellow']))/values['spirometry_yellow__max']) * D(1) + D((is_none_type(i['speed']))/values['speed__max']) * D(1)+ D((is_none_type(i['stamina']))/values['stamina__max']) * D(1.2)
 
-            s = Sportsman.objects.get(pk=i['sportsman_id'])
+        #     s = Sportsman.objects.get(pk=i['sportsman_id'])
 
-            result_list_dont_sort.append({
-                'sportsman_id': i['sportsman_id'],
-                'rating': round(rating,6),
-                'sportsman': i['sportsman_id'],
-                'name': s.name,
-                'surname': s.surname,
-                'patronymic': s.patronymic,
+        #     result_list_dont_sort.append({
+        #         'sportsman_id': i['sportsman_id'],
+        #         'rating': round(rating,6),
+        #         'sportsman': i['sportsman_id'],
+        #         'name': s.name,
+        #         'surname': s.surname,
+        #         'patronymic': s.patronymic,
 
-            })
+        #     })
 
 
-        result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
+        # result_list = sorted(result_list_dont_sort, key = lambda i: i['rating'],reverse=True)
 
 
         return render(request, self.template_name, {
-            'items': result_list,
+            'items': {},#result_list,
             'title': 'Рейтинг первичных обследований',
         })
 
