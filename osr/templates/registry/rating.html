@@ -42,7 +42,8 @@
         {% for i in items %}
 
         {% if forloop.counter == 1 %}
-        <tr class="col-md-7 gold">
+
+        <tr class="col-md-7" style="background-color: #59f983!important;">
           <th>
               <div class="table__icon-wrap">
                 <a href="/registry/sportsman/{{i.sportsman_id}}" title="Перейти к спортсмену">
@@ -58,9 +59,10 @@
 
           <td>{{ i.surname }} {{ i.name }} {{ i.patronymic }}</td>
         </tr>
+
         {% elif forloop.counter == 2 %}
 
-        <tr class="col-md-7 silver">
+        <tr class="col-md-7" style="background-color: #59f983!important;">
           <th>
               <div class="table__icon-wrap">
                 <a href="/registry/sportsman/{{i.sportsman_id}}" title="Перейти к спортсмену">
@@ -75,10 +77,12 @@
 
           <td><strong>{{ i.rating }}</strong></td>
 
-          <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+          <td>{{ i.surname }} {{ i.name }} {{ i.patronymic }}</td>
           </tr>
+
           {% elif forloop.counter == 3 %}
-          <tr class="col-md-7 copper">
+
+          <tr class="col-md-7" style="background-color: #f7f959!important;">
             <th>
               <div class="table__icon-wrap">
                 <a href="/registry/sportsman/{{i.sportsman_id}}" title="Перейти к спортсмену">
@@ -92,10 +96,29 @@
 
             <td><strong>{{ i.rating }}</strong></td>
 
-            <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+            <td>{{ i.surname }} {{ i.name }} {{ i.patronymic }}</td>
+          </tr>
+          {% elif forloop.counter == 4 %}
+
+          <tr class="col-md-7" style="background-color: #f7f959!important;">
+            <th>
+              <div class="table__icon-wrap">
+                <a href="/registry/sportsman/{{i.sportsman_id}}" title="Перейти к спортсмену">
+                  <img src="../../../static/images/svg/person-24px.svg" alt="">
+                </a>
+                </a>
+              </div>
+            </th>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.sportsman_id}}</td>
+
+            <td><strong>{{ i.rating }}</strong></td>
+
+            <td>{{ i.surname }} {{ i.name }} {{ i.patronymic }}</td>
           </tr>
           {% else %}
-          <tr class="col-md-7">
+
+          <tr class="col-md-7"  style="background-color: #ff000052!important;">
             <th>
               <div class="table__icon-wrap">
                 <a href="/registry/sportsman/{{i.sportsman_id}}" title="Перейти к спортсмену">
@@ -110,7 +133,7 @@
 
             <td><strong>{{ i.rating }}</strong></td>
 
-            <td>{{ i.name }} {{ i.surname }} {{ i.patronymic }}</td>
+            <td>{{ i.surname }} {{ i.name }} {{ i.patronymic }}</td>
           </tr>
           {% endif %}
         {% endfor %}
