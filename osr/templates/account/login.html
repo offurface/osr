@@ -14,19 +14,12 @@
 
       <div class="auth-wrap">
         <h1 class="auth-wrap__title">
-          {{ user.last_name }} {{ user.first_name }}, <br>
-          вы успешно авторизированы.<br>
+          {{ user.last_name }} {{ user.first_name }} <br>
+          Вы успешно авторизированы<br>
           <a href="{% url 'registry' %}">Перейти к реестру</a><br>
           <a href="{% url 'logout' %}">Завершить сессию</a>
         </h1>
         {% if user.groups %}
-        <h1>Пользователь состоит в группе:</h1>
-
-        {% for g in user.groups.all %}
-        <ul>
-          {{ g }}
-        </ul>
-        {% endfor %}
       {% endif %}
       </div>
     </div>
