@@ -60,13 +60,6 @@ class RatingUMOListView(View):
         values = {
             "length__max": UMO.objects.aggregate(Max("length"))["length__max"],
             "weight__max": UMO.objects.aggregate(Max("weight"))["weight__max"],
-            "ultrasound_heart__max": D(
-                is_none_type(
-                    UMO.objects.aggregate(Max("ultrasound_heart"))[
-                        "ultrasound_heart__max"
-                    ]
-                )
-            )
             #'ultrasound_heart__max': UMO.objects.aggregate(Max('ultrasound_heart'))['ultrasound_heart__max'],
         }
 
@@ -74,20 +67,13 @@ class RatingUMOListView(View):
             "sportsman_id",
             "length",
             "weight",
-            "ultrasound_heart",
             #'',
         )
 
         for i in items:
-            rating = (
-                (is_none_type(i["length"]) / values["length__max"]) * D(1.2)
-                + (is_none_type(i["weight"]) / values["weight__max"]) * D(1)
-                + D(
-                    (is_none_type(i["ultrasound_heart"]))
-                    / values["ultrasound_heart__max"]
-                )
-                * D(1.5)
-            )
+            rating = (is_none_type(i["length"]) / values["length__max"]) * D(1.2) + (
+                is_none_type(i["weight"]) / values["weight__max"]
+            ) * D(1)
 
             s = Sportsman.objects.get(pk=i["sportsman_id"])
 
